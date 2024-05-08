@@ -169,6 +169,9 @@
 	<script src="assets/js/vendor/moment.min.js"></script>
 	<script src="assets/js/vendor/daterangepicker.js"></script>
 	<script src="assets/js/vendor/date-range.js"></script>
+	<script src="assets/js/vendor/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 	<!-- Main Custom -->
 	<script src="assets/js/main.js"></script>

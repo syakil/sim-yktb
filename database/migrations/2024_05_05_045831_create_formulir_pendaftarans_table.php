@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('formulir_pendaftaran', function (Blueprint $table) {
             $table->integer('no_pendaftaran')->primary();
-            $table->string('nama_anak');
-            $table->string('no_hp');
-            $table->string('jurusan');
-            $table->string('sekolah_yang_dituju');
+            $table->string('nisn');
+            $table->string('nama_siswa');
+            $table->string('jenis_kelamin');
+            $table->string('asal_sekolah');
+            $table->string('alamat');
+            $table->date('tanggal_lahir');
+            $table->string('no_hp_orang_tua');
+            $table->integer('jurusan_id');
+            $table->integer('sekolah_id');
             $table->boolean('status_daftar_ulang')->default(false);
             $table->timestamps();
         });

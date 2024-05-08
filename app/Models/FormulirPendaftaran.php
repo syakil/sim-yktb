@@ -10,4 +10,17 @@ class FormulirPendaftaran extends Model
     use HasFactory;
     protected $table = 'formulir_pendaftaran';
     protected $primaryKey = 'no_pendaftaran';
+    protected $fillable = [
+        'nisn',
+        'nama_siswa',
+        'jenis_kelamin',
+        'asal_sekolah',
+        'alamat',
+        'tanggal_lahir',
+        'no_hp_orang_tua',
+        'jurusan_id',
+        'sekolah_id',
+        'status_daftar_ulang',
+        'no_pendaftaran'
+    ];
 }
