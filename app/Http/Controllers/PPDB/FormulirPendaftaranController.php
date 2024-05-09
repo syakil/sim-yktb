@@ -77,7 +77,7 @@ class FormulirPendaftaranController extends Controller
         $data = [
             "title" => 'data'
         ];
-        $pdf = Pdf::loadView('ppdb.formulir_pendaftaran.blangko',$data)->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->download('invoice.pdf');
+        $pdf = Pdf::loadView('ppdb.formulir_pendaftaran.blangko',$data);
+        return $pdf->stream('invoice.pdf');
     }
 }
