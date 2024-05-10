@@ -3,7 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\FormulirPendaftaran;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 use stdClass;
 
@@ -61,8 +64,15 @@ class FormulirPendaftaranRepository extends BaseRepository
     public static function store($request)
     {
         try {
-            DB::beginTransaction();
+
             $result = new stdClass();
+            $check_nisn = FormulirPendaftaran::where('nisn',$request->create_nisn)->first();
+            if($check_nisn){
+                $result->status = 'error';
+                $result->message = 'NISN Sudah Terdaftar Atas Nama '.$check_nisn->nama_siswa;
+                return $result;
+            }
+            DB::beginTransaction();
 
             $result->status = 'success';
             $result->noPendaftaran = '';
@@ -103,8 +113,19 @@ class FormulirPendaftaranRepository extends BaseRepository
                 'alamat' => $request->create_alamat,
                 'tanggal_lahir' => $request->create_tgl_lahir,
                 'no_hp_orang_tua' => $request->create_no_hp_orang_tua,
+                'no_hp_siswa' => $request->create_no_hp_siswa,
                 'jurusan_id' => $request->jurusan,
                 'sekolah_id' => $request->sekolah,
+            ]);
+
+            $password = Carbon::parse($request->create_tgl_lahir)->format('dmY');
+            $password = Hash::make($password);
+
+            User::create([
+                'id' => $request->create_nisn,
+                'name' => $request->create_nama_siswa,
+                'email' => str_replace(' ', '',$request->create_nama_siswa).'@yktb.sch.id',
+                'password' => Hash::make($password),
             ]);
 
             // Jika Anda perlu merespons dengan nomor formulir yang dibuat, Anda dapat mengembalikannya sebagai respons

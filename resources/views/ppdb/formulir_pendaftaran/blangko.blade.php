@@ -19,7 +19,12 @@
         }
 
         .header {
-            margin-bottom: 20px;
+            margin-top: -5px;
+            margin-bottom: 18px;
+        }
+
+        .yayasan{
+            margin-top: -15px;
         }
 
         .info {
@@ -27,7 +32,8 @@
         }
 
         .data-table {
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .data-table td {
@@ -35,12 +41,13 @@
         }
 
         .side-by-side-60 {
-            width: 60%; /* Lebar tabel 60% */
+            width: 60%;
+            margin-right: 2px;
             float: left;
         }
 
         .side-by-side-40 {
-            width: 40%; /* Lebar tabel 40% */
+            width: 40%;
             float: left;
         }
     </style>
@@ -48,7 +55,10 @@
 <body>
 <div class="header">
     <p>Penerimaan Peserta Didik Baru</p>
-    <p class="yayasan">Yayasan Kejuruan Teknologi Bogor</p>
+    <p class="yayasan">Yayasan Kejuruan Teknologi Bogor<br>
+        Kota Bogor
+    </p>
+
 </div>
 
 <table>
@@ -67,26 +77,52 @@
 
 <table class="data-table">
     <tr>
-        <td colspan="3" style="text-align: left;">
+        <td colspan="4" style="text-align: left;">
             <b>Info Pendaftaran</b>
         </td>
     </tr>
     <tr class="info">
         <td style="text-align: left;">No Pendaftaran</td>
-        <td style="text-align: left;">Lokasi Pendaftaran</td>
-        <td style="text-align: left;">Waktu</td>
+        <td style="text-align: left;">Sekolah Yang Di Tuju</td>
+        <td style="text-align: left;">Jurusan</td>
+        <td style="text-align: left;">Tanggal Pendaftaran</td>
     </tr>
     <tr>
-        <td style="text-align: left;">242500001</td>
-        <td style="text-align: left;">YKTB 1</td>
-        <td style="text-align: left;">5 Mei 2024 pkl 14:55:20 WIB</td>
+        <td style="text-align: left;">{{$data['no_pendaftaran']}}</td>
+        <td style="text-align: left;">{{$data['nama_sekolah']}}</td>
+        <td style="text-align: left;">{{$data['nama_jurusan']}}</td>
+        <td style="text-align: left;">5 Mei 2024</td>
     </tr>
 </table>
 
 <div class="side-by-side-60">
     <table>
         <tr>
-            <td>Biodata Siswa</td>
+            <td colspan="2">Biodata Siswa</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">NISN</td>
+            <td>3213131231231</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">Nama Lengkap</td>
+            <td>Ahmad Fauzi Gunawan Wibowo Rakabuming</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">Jenis Kelamin</td>
+            <td>Laki - Laki</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">Tanggal Lahir</td>
+            <td>20 Desember 2014</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">Alamat</td>
+            <td>Perum Cinamon Hill Blok U No . RT 02 RW 03 Kelurahan Kayumanis Kecamatan Tanah Sareal Kota Bogor Provinsi Jawa Barat Negara Indonesia</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">Sekolah Asal</td>
+            <td>Sekolah Borcess 1 Bogor</td>
         </tr>
     </table>
 </div>
@@ -95,6 +131,23 @@
     <table>
         <tr>
             <td>Link Daftar Ulang</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                <img style="width:150px;" src="{{public_path('qr.png')}}" alt="">
+                <img style="width:150px;" src="{{public_path('barcode.gif')}}" alt="">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="clear:both;"></div> <!-- Clear floating elements -->
+
+<div>
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 20%"><b>Catatan</b></td>
+            <td>Silahkan melakukan daftar ulang untuk proses selanjutnya sebelum tanggal 21 Juli 2024</td>
         </tr>
     </table>
 </div>

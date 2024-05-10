@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->date('tanggal_lahir');
             $table->string('no_hp_orang_tua');
+            $table->string('no_hp_siswa');
             $table->integer('jurusan_id');
             $table->integer('sekolah_id');
             $table->boolean('status_daftar_ulang')->default(false);

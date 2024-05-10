@@ -18,6 +18,7 @@ class FormulirPendaftaran extends Model
         'alamat',
         'tanggal_lahir',
         'no_hp_orang_tua',
+        'no_hp_siswa',
         'jurusan_id',
         'sekolah_id',
         'status_daftar_ulang',

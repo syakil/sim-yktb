@@ -25,11 +25,11 @@
                         <input type="text" class="form-control" id="create_asal_sekolah" placeholder="Asal Sekolah" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label for="nama_siswa" style="color: black">Alamat</label>
-                        <textarea class="form-control" id="create_alamat" placeholder="Alamat"></textarea>
+                        <label for="nama_siswa" style="color: black">No Handphone Orang Tua</label>
+                        <input type="text" class="form-control" id="create_no_hp_orang_tua" placeholder="No Handphone Orang Tua" autocomplete="off">
                     </div>
                 </div>
-                <div class="col-md-6">                    
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama_siswa" style="color: black">Nama Siswa</label>
                         <input type="text" class="form-control" id="create_nama_siswa" placeholder="Nama Siswa" autocomplete="off">
@@ -39,12 +39,17 @@
                         <input type="date" class="form-control" id="create_tgl_lahir" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label for="nama_siswa" style="color: black">No Handphone Orang Tua</label>
-                        <input type="text" class="form-control" id="create_no_hp_orang_tua" placeholder="No Handphone Orang Tua" autocomplete="off">
+                        <label for="nama_siswa" style="color: black">No Handphone Siswa</label>
+                        <input type="text" class="form-control" id="create_no_hp_siswa" placeholder="No Handphone Siswa" autocomplete="off">
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="nama_siswa" style="color: black">Alamat</label>
+                        <textarea class="form-control" id="create_alamat" placeholder="Alamat"></textarea>
+                    </div>
                 </div>
-                <div class="col-md-6"> 
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="sekolah" style="color: black">Sekolah Yang Di Tuju</label>
                         <select class="form-control" id="create_sekolah">
@@ -53,9 +58,9 @@
                                 <option value="{{ $item->id }}">{{ $item->nama_sekolah }}</option>
                             @endforeach
                         </select>
-                    </div>                   
+                    </div>
                 </div>
-                <div class="col-md-6">        
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="jurusan" style="color: black">Jurusan</label>
                         <select class="form-control" id="create_jurusan">
@@ -64,7 +69,7 @@
                                 <option value="{{ $item->id }}">{{ $item->nama_jurusan }}</option>
                             @endforeach
                         </select>
-                    </div>            
+                    </div>
                 </div>
             </div>
 

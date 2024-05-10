@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.siswa.app')
 
 @section('content')
 
@@ -120,13 +120,11 @@
 
     $('#submitForm').click(function(e) {
         e.preventDefault();
-
         // Reset warna merah dari input
-        $('#create_nisn,#create_no_hp_siswa #create_jenis_kelamin,#create_asal_sekolah,#create_alamat,#create_nama_siswa,#create_tgl_lahir,#create_no_hp_orang_tua,#create_sekolah,#create_jurusan ').removeClass('is-invalid');
-
+        $('#create_nisn, #create_no_hp_siswa,#create_jenis_kelamin,#create_asal_sekolah,#create_alamat,#create_nama_siswa,#create_tgl_lahir,#create_no_hp_orang_tua,#create_sekolah,#create_jurusan ').removeClass('is-invalid');
         // Validasi input
         var errors = false;
-        $('#create_nisn,#create_no_hp_siswa, #create_jenis_kelamin,#create_asal_sekolah,#create_alamat,#create_nama_siswa,#create_tgl_lahir,#create_no_hp_orang_tua,#create_sekolah,#create_jurusan ').each(function() {
+        $('#create_nisn, #create_no_hp_siswa,#create_jenis_kelamin,#create_asal_sekolah,#create_alamat,#create_nama_siswa,#create_tgl_lahir,#create_no_hp_orang_tua,#create_sekolah,#create_jurusan ').each(function() {
             if ($(this).val() == '' || $(this).val() == null){
                 $(this).addClass('is-invalid');
                 errors = true;
@@ -169,10 +167,10 @@
             error: function(xhr, status, error) {
                 Swal.fire({
                     title: 'Oops!',
-                    text: JSON.parse(xhr.responseText)['message'],
+                    text: 'Silahkan Hubungi Pihak Terkait',
                     icon: 'error',
                     confirmButtonText: 'Tutup'
-                });
+                })
             }
         });
     });

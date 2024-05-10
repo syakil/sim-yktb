@@ -45,7 +45,7 @@ class FormulirPendaftaranController extends Controller
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" target="_blank" href="'.route("formulir-pendaftaran.download").'">Cetak Blangko</a>
+                    <a class="dropdown-item" target="_blank" href="'.route("formulir-pendaftaran.download",$list->no_pendaftaran).'">Cetak Blangko</a>
                     <a class="dropdown-item" href="#">Delete</a>
                 </div>
             </div>
@@ -64,20 +64,22 @@ class FormulirPendaftaranController extends Controller
     {
         $noPendaftaran  = FormulirPendaftaranRepository::store($request);
         if($noPendaftaran == null){
-            return response()->json(['error' => 'Gagal menyimpan data'],500);
+            return response()->json(['message' => 'Gagal menyimpan data'],500);
         }elseif($noPendaftaran->status == 'error'){
-            return response()->json(['error' => $noPendaftaran->message],500);
+            return response()->json(['message' => $noPendaftaran->message],500);
         }else{
             return response()->json(['no_pendaftaran' => $noPendaftaran->no_pendaftaran]);
         }
     }
 
 
-    public function downloadData() {
-        $data = [
-            "title" => 'data'
-        ];
-        $pdf = Pdf::loadView('ppdb.formulir_pendaftaran.blangko',$data);
+    public function downloadData($noPendaftaran) {
+        $siswa = FormulirPendaftaran::where('no_pendaftaran',$noPendaftaran)
+        ->leftJoin('sekolahs','sekolahs.id','formulir_pendaftaran.sekolah_id')
+        ->leftJoin('jurusans','jurusans.id','formulir_pendaftaran.jurusan_id')
+        ->first();
+        dd($siswa->created_at);
+        $pdf = Pdf::loadView('ppdb.formulir_pendaftaran.blangko',['data'=>$siswa]);
         return $pdf->stream('invoice.pdf');
     }
 }
