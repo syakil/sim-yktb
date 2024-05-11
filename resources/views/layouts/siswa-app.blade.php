@@ -16,7 +16,7 @@
 	<meta name="description" content="Carrot - Admin.">
 	<meta name="author" content="ashishmaraviya">
 
-	<title>Carrot - Siswa</title>
+	<title>YKTB - Siswa</title>
 
 	<!-- App favicon -->
 	<link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
@@ -37,6 +37,7 @@
 
 	<!-- Main CSS -->
 	<link id="main-css" href="assets/css/style.css" rel="stylesheet">
+    @yield('style')
 
 </head>
 
@@ -104,29 +105,9 @@
 				<div class="cr-sb-content">
 					<ul class="cr-sb-list">
 						<li class="cr-sb-item sb-drop-item">
-							<a href="javascript:void(0)" class="cr-drop-toggle">
-								<i class="ri-dashboard-3-line"></i><span class="condense">Dashboard<i
-										class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-							<ul class="cr-sb-drop condense">
-								<li><a href="index.html" class="cr-page-link drop"><i
-									class="ri-checkbox-blank-circle-line"></i>Dashboard</a></li>
-
-							</ul>
+							<a href="{{route('dashboard-siswa.index')}}" class="cr-drop-toggle">
+								<i class="ri-dashboard-3-line"></i><span class="condense">Dashboard</a>
 						</li>
-						<li class="cr-sb-item-separator"></li>
-						<li class="cr-sb-title condense">Kesisawaan</li>
-						<li class="cr-sb-item sb-drop-item">
-							<a href="javascript:void(0)" class="cr-drop-toggle">
-								<i class="ri-pages-line"></i><span class="condense">PPDB<i
-										class="drop-arrow ri-arrow-down-s-line"></i></span></a>
-							<ul class="cr-sb-drop condense">
-								<li><a href="{{route('formulir-pendaftaran.index')}}" class="cr-page-link drop"><i
-											class="ri-checkbox-blank-circle-line"></i></i>Formulir Pendaftaran</a></li>
-								<li><a href="signup.html" class="cr-page-link drop"><i
-											class="ri-checkbox-blank-circle-line"></i>Daftar Ulang</a></li>
-							</ul>
-						</li>
-
 					</ul>
 				</div>
 			</div>

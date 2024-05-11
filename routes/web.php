@@ -30,3 +30,7 @@ Route::get('/formulir-pendaftaran/generate',[\App\Http\Controllers\PPDB\Formulir
 Route::get('/formulir-pendaftaran/getData',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'getData'])->name('formulir-pendaftaran.data');
 Route::get('/formulir-pendaftaran/download/{noPendaftaran}',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'downloadData'])->name('formulir-pendaftaran.download');
 Route::post('/formulir-pendaftaran/store',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'store'])->name('formulir-pendaftaran.store');
+
+
+Route::get('/dashboard-siswa',[\App\Http\Controllers\DashboardSiswaController::class,'index'])->name('dashboard-siswa.index');
+Route::get('/daftar-ulang',[\App\Http\Controllers\DaftarUlangController::class,'index'])->name('daftar-ulang.index');
