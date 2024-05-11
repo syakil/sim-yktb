@@ -8,9 +8,11 @@ use App\Models\Jurusan;
 use App\Models\Sekolah;
 use App\Repositories\FormulirPendaftaranRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class FormulirPendaftaranController extends Controller
 {
@@ -74,12 +76,55 @@ class FormulirPendaftaranController extends Controller
 
 
     public function downloadData($noPendaftaran) {
-        $siswa = FormulirPendaftaran::where('no_pendaftaran',$noPendaftaran)
+        $siswa = FormulirPendaftaran::select('formulir_pendaftaran.*','sekolahs.nama_sekolah','jurusans.nama_jurusan')->where('no_pendaftaran',$noPendaftaran)
         ->leftJoin('sekolahs','sekolahs.id','formulir_pendaftaran.sekolah_id')
         ->leftJoin('jurusans','jurusans.id','formulir_pendaftaran.jurusan_id')
         ->first();
-        dd($siswa->created_at);
-        $pdf = Pdf::loadView('ppdb.formulir_pendaftaran.blangko',['data'=>$siswa]);
+        Carbon::setLocale('id');
+        $tanggalDaftar = Carbon::parse($siswa->created_at)->translatedFormat('d M Y');
+        $tanggalLahir = Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d M Y');
+        $tanggalDaftarUlang = Carbon::parse($siswa->created_at);
+        $date = $tanggalDaftarUlang->copy()->addDay();
+
+        $daysToAdd = 7;
+
+        while ($daysToAdd > 0) {
+            if (!$date->isWeekend()) {
+                $daysToAdd--;
+            }
+            $date->addDay(); // Move to the next day
+        }
+        $tahunIni = date('Y');
+        $tahunDepan = $tahunIni + 1;
+        $url = config('app.url').'/daftar-ulang/login/'.$noPendaftaran;
+
+        $tanggalDaftarUlang = $date->translatedFormat('d M Y');
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
+        $data= [
+            'siswa' => $siswa,
+            'tanggal' => $tanggalDaftar,
+            'tanggal_lahir' => $tanggalLahir,
+            'tanggal_daftar_ulang' => $tanggalDaftarUlang,
+            'tahunAjaran' => $tahunIni.'/'.$tahunDepan,
+            'qrcode' => $qrcode
+        ];
+        $pdf =Pdf::loadView('ppdb.formulir_pendaftaran.blangko',['data'=>$data]);
         return $pdf->stream('invoice.pdf');
+    }
+
+    public function generate()
+    {
+        $currentUrl = URL::current();
+        $url = config('app.url');
+        dd($url);
+        // dd($currentUrl);
+        $qrcode = QrCode::size(300)->format('png')->generate('google.com');
+
+        // Simpan QR code ke storage
+        $filename = 'qrcode.png';
+        Storage::put('public/qrcodes/'.$filename, $qrcode);
+
+        return asset('storage/qrcodes/'.$filename);
+        // return response()->json(['url' => asset('storage/qrcodes/'.$filename)]);
     }
 }

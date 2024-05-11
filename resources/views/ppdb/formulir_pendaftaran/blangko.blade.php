@@ -53,6 +53,7 @@
     </style>
 </head>
 <body>
+    <h2 style="text-align: center">Tanda Bukti Pendaftaran</h2>
 <div class="header">
     <p>Penerimaan Peserta Didik Baru</p>
     <p class="yayasan">Yayasan Kejuruan Teknologi Bogor<br>
@@ -66,7 +67,7 @@
         <td style="text-align: left;">
             <b>Tanda Bukti Formulir Pendaftaran</b><br>
             <b>Penerimaan Peserta Didik Baru</b><br>
-            Tahun Pelajaran 2024/2025
+            Tahun Pelajaran {{ $data['tahunAjaran'] }}
         </td>
         <td style="text-align: center;">
             Lembar<br>
@@ -88,10 +89,10 @@
         <td style="text-align: left;">Tanggal Pendaftaran</td>
     </tr>
     <tr>
-        <td style="text-align: left;">{{$data['no_pendaftaran']}}</td>
-        <td style="text-align: left;">{{$data['nama_sekolah']}}</td>
-        <td style="text-align: left;">{{$data['nama_jurusan']}}</td>
-        <td style="text-align: left;">5 Mei 2024</td>
+        <td style="text-align: left;">{{$data['siswa']['no_pendaftaran']}}</td>
+        <td style="text-align: left;">{{$data['siswa']['nama_sekolah']}}</td>
+        <td style="text-align: left;">{{$data['siswa']['nama_jurusan']}}</td>
+        <td style="text-align: left;">{{$data['tanggal']}}</td>
     </tr>
 </table>
 
@@ -102,28 +103,35 @@
         </tr>
         <tr>
             <td class="info" style="text-align: right">NISN</td>
-            <td>3213131231231</td>
+            <td>{{$data['siswa']['nisn']}}</td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">Nama Lengkap</td>
-            <td>Ahmad Fauzi Gunawan Wibowo Rakabuming</td>
+            <td>{{$data['siswa']['nama_siswa']}}</td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">Jenis Kelamin</td>
-            <td>Laki - Laki</td>
+            <td>{{$data['siswa']['jenis_kelamin'] == 'L' ? 'Laki - Laki' : 'Perempuan'}}</td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">Tanggal Lahir</td>
-            <td>20 Desember 2014</td>
+            <td>{{$data['tanggal_lahir']}}</td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">Alamat</td>
-            <td>Perum Cinamon Hill Blok U No . RT 02 RW 03 Kelurahan Kayumanis Kecamatan Tanah Sareal Kota Bogor Provinsi Jawa Barat Negara Indonesia</td>
+            <td>{{$data['siswa']['alamat']}}</td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">Sekolah Asal</td>
-            <td>Sekolah Borcess 1 Bogor</td>
+            <td>{{$data['siswa']['asal_sekolah']}}</td>
         </tr>
+        <tr>
+            <td class="info" style="text-align: right">No Handphone Siswa</td>
+            <td>{{$data['siswa']['no_hp_siswa']}}</td>
+        </tr>
+        <tr>
+            <td class="info" style="text-align: right">No Handphone Orang Tua</td>
+            <td>{{$data['siswa']['no_hp_orang_tua']}}</td>
     </table>
 </div>
 
@@ -134,8 +142,12 @@
         </tr>
         <tr>
             <td style="text-align: center">
-                <img style="width:150px;" src="{{public_path('qr.png')}}" alt="">
-                <img style="width:150px;" src="{{public_path('barcode.gif')}}" alt="">
+                {{-- {{ $data['qrcode'] }} --}}
+                {{-- <img style="width:150px;" src="{{public_path('qr.png')}}" alt=""> --}}
+                <img style="width:150px;margin-bottom:10px;" src="data:image/png;base64, {!! $data['qrcode'] !!}">
+                {{-- <img style="width:150px;" src="{{public_path('barcode.gif')}}" alt=""> --}}
+                <div style="text-align:center;margin-left:30px;">{!! DNS1D::getBarcodeHTML($data['siswa']['no_pendaftaran'], 'CODABAR') !!}</div>
+                <small>{{$data['siswa']['no_pendaftaran']}}</small>
             </td>
         </tr>
     </table>
@@ -147,7 +159,10 @@
     <table style="width: 100%">
         <tr>
             <td style="width: 20%"><b>Catatan</b></td>
-            <td>Silahkan melakukan daftar ulang untuk proses selanjutnya sebelum tanggal 21 Juli 2024</td>
+            <td>
+                - Scan QR Code diatas untuk melengkapi form isian daftar ulang <br>
+                - Lakukan daftar ulang sebelum tanggal {{ $data['tanggal_daftar_ulang'] }} <br>
+            </td>
         </tr>
     </table>
 </div>

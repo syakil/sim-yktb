@@ -80,6 +80,46 @@
 @section('script')
 <script>
     var table;
+    $('#create_no_hp_orang_tua,#create_no_hp_siswa').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 12 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+    $('#create_nisn').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 10 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
     var params = function param(){
         return{
             no_pendaftaran : $('#no_pendaftaran').val()

@@ -24,7 +24,9 @@ return new class extends Migration
             $table->integer('jurusan_id');
             $table->integer('sekolah_id');
             $table->boolean('status_daftar_ulang')->default(false);
+            $table->string('created_by');
             $table->timestamps();
+            $table->string('updated_by')->nullable();
         });
     }
 
