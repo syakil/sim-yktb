@@ -26,38 +26,364 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="row">
-            <div class="col-xl-12">
+            <form id="daftar-ulang">
                 <div class="cr-card">
                     <div class="cr-card-content label-card">
-                        <form>
-                            <div class="mb-3">
-                                <label for="timestamp" class="form-label">Timestamp</label>
-                                <input type="text" class="form-control" id="timestamp" name="timestamp">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="no_pendaftaran" class="form-label">No Pendaftaran</label>
+                                    <input type="text" class="form-control" id="no_pendaftaran" value="{{$siswa->no_pendaftaran}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="sekolah_yang_dituju" class="form-label">Sekolah Yang Dituju</label>
+                                    <select class="form-control" id="sekolah_yang_dituju">
+                                        @foreach ($sekolah as $list)
+                                            <option value="{{$list->id}}" {{$siswa->sekolah_yang_dituju == $list->id ? 'selected' : ''}}>{{$list->nama_sekolah}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="tanggal_daftar" class="form-label">Tanggal Daftar</label>
-                                <input type="text" class="form-control" id="tanggal_daftar" name="tanggal_daftar">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tanggal_pendaftaran" class="form-label">Tanggal Pendaftaran</label>
+                                    <input type="text" class="form-control" id="tanggal_pendaftaran" value="{{$siswa->created_at}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jurusan" class="form-label">Jurusan</label>
+                                    <select class="form-control" id="jurusan">
+                                        @foreach ($jurusan as $list)
+                                            <option value="{{$list->id}}" {{$siswa->jurusan == $list->id ? 'selected' : ''}}>{{$list->nama_jurusan}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="nomor_pendaftaran" class="form-label">Nomor Pendaftaran</label>
-                                <input type="text" class="form-control" id="nomor_pendaftaran" name="nomor_pendaftaran">
+                        </div>
+                        <hr>
+                        <h4>
+                            Data Pribadi
+                        </h4>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nisn" class="form-label">NISN</label>
+                                    <input type="text" class="form-control" id="nisn" value="{{$siswa->nisn}}" readonly>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="sekolah" class="form-label">Sekolah Yang Dituju</label>
-                                <input type="text" class="form-control" id="sekolah" name="sekolah">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nik" class="form-label">Nomor Induk Kependudukan (NIK) </label>
+                                    <input type="text" class="form-control" id="nik">
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="jurusan" class="form-label">Jurusan</label>
-                                <input type="text" class="form-control" id="jurusan" name="jurusan">
-                            </div>
-                            <!-- Dan seterusnya untuk input lainnya -->
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nama_siswa" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="nama_siswa" value="{{$siswa->nama_siswa}}">
+                                </div>
 
+                                <div class="mb-3">
+                                    <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                    <input type="text" class="form-control" id="tempat_lahir">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                    <select class="form-control" id="jenis_kelamin">
+                                        <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                        <option value="L" {{$siswa->jenis_kelamin == 'L' ? 'selected' : ''}} >Laki-laki</option>
+                                        <option value="P" {{$siswa->jenis_kelamin == 'P' ? 'selected' : ''}} >Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="tanggal_lahir">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="agama" class="form-label">Agama</label>
+                                    <select class="form-control" id="agama">
+                                        <option value="" selected disabled>Pilih Agama</option>
+                                        <option value="islam">Islam</option>
+                                        <option value="kristen">Kristen</option>
+                                        <option value="katolik">Katolik</option>
+                                        <option value="hindu">Hindu</option>
+                                        <option value="budha">Budha</option>
+                                        <option value="konghucu">Konghucu</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Tinggin Badan (cm)</label>
+                                    <input type="number" class="form-control" id="tinggi_badan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="alamat_kampung" class="form-label">Alamat(Kampung)</label>
+                                    <textarea name="alamat_kampung" cols="30" rows="3" class="form-control" id="alamat_kampung"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jumlah_saudara" class="form-label">Jumlah Saudara Kandung</label>
+                                    <input type="number" class="form-control" id="jumlah_saudara">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="alamat_kelurahan" class="form-label">Alamat(Kelurahan/Desa)</label>
+                                    <input type="text" class="form-control" id="alamat_kelurahan">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="alamat_kota" class="form-label">Alamat(Kota)</label>
+                                    <input type="text" class="form-control" id="alamat_kota">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="jarak_rumah" class="form-label">Jarak Rumah Ke Sekolah(KM)</label>
+                                    <input type="number" class="form-control" id="jarak_rumah">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="waktu_tempuh" class="form-label">Waktu Tempuh Rumah Ke Sekolah(Menit)</label>
+                                    <input type="number" class="form-control" id="waktu_tempuh">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="no_hp_siswa" class="form-label ">No Handphone Siswa</label>
+                                    <input type="text" class="form-control" id="no_hp_siswa" value="{{$siswa->no_hp_siswa}}" id="no_hp_siswa">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>
+                            Data Wali/Orang Tua
+                        </h4>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nama_ayah" class="form-label ">Nama Ayah</label>
+                                    <input type="text" class="form-control" id="nama_ayah">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pendidikan_ayah" class="form-label ">Pendidikan Ayah</label>
+                                    <input type="text" class="form-control" id="pendidikan_ayah">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pekerjaan_ayah" class="form-label ">Pekerjaan Ayah</label>
+                                    <input type="text" class="form-control" id="pekerjaan_ayah">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penghasilan_ayah" class="form-label ">Penghasilan Ayah</label>
+                                    <input type="text" class="form-control" id="penghasilan_ayah">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="no_hp_orang_tua" class="form-label ">No Handphone Wali/Orang Tua</label>
+                                    <input type="text" class="form-control" id="no_hp_orang_tua">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nama_ibu" class="form-label ">Nama Ibu</label>
+                                    <input type="text" class="form-control" id="nama_ibu">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pekerjaan_ibu" class="form-label ">Pekerjaan Ibu</label>
+                                    <input type="text" class="form-control" id="pekerjaan_ibu">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penghasilan_ibu" class="form-label ">Penghasilan Ibu</label>
+                                    <input type="text" class="form-control" id="penghasilan_ibu">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pendidikan_ibu" class="form-label ">Pendidikan Ibu</label>
+                                    <input type="text" class="form-control" id="pendidikan_ibu">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label ">Nama Wali</label>
+                                    <input type="text" class="form-control" id="nama_wali">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label ">Pekerjaan Wali</label>
+                                    <input type="text" class="form-control" id="pekerjaan_wali">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label ">Pendidikan Wali</label>
+                                    <input type="text" class="form-control" id="pendidikan_wali">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label ">Penghasilan Wali</label>
+                                    <input type="text" class="form-control" id="penghasilan_wali">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>
+                            Data Sekolah Asal
+                        </h4>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="nama_sekolah" class="form-label ">Nama Sekolah</label>
+                                    <input type="text" class="form-control" id="nama_sekolah" value="{{$siswa->asal_sekolah}}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nomor_ijazah" class="form-label ">Nomor Ijazah</label>
+                                    <input type="text" class="form-control" id="nomor_ijazah">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ijazah" class="form-label ">Ijazah</label>
+                                    <input type="file" class="form-control" id="ijazah">
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tahun_lulus" class="form-label ">Tahun Lulus</label>
+                                    <input type="text" class="form-control" id="tahun_lulus">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nomor_skhun" class="form-label ">Nomor SKHUN</label>
+                                    <input type="text" class="form-control" id="nomor_skhun">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="skhun" class="form-label ">SKHUN</label>
+                                    <input type="file" class="form-control" id="skhun">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="alamat_sekolah" class="form-label ">Alamat Sekolah</label>
+                                    <input type="text" class="form-control" id="alamat_sekolah">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>
+                            Informasi Prestasi & Beasiswa Yang Diperolah
+                        </h4>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="jenis_kejuaraan" class="form-label ">Jenis Kejuaran/Perlombaan</label>
+                                    <input type="text" class="form-control" id="jenis_kejuaraan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nama_beasiswa" class="form-label ">Nama Beasiswa</label>
+                                    <input type="text" class="form-control" id="nama_beasiswa">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="peringkat_kejuaraan" class="form-label ">Juara Ke - </label>
+                                    <input type="text" class="form-control" id="peringkat_kejuaraan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="penyelengara_beasiswa" class="form-label ">Penyelanggara Beasiswa</label>
+                                    <input type="text" class="form-control" id="penyelengara_beasiswa">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="tingkat_kejuaraan" class="form-label ">Tingkat (Kec / Kota /Prov)</label>
+                                    <input type="text" class="form-control" id="tingkat_kejuaraan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tahun_beasiswa" class="form-label ">Tahun Penerimaan Beasiswa</label>
+                                    <input type="text" class="form-control" id="tahun_beasiswa">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4>
+                            Data Lainnya
+                        </h4>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="pas_foto" class="form-label ">Pas Foto (Background : Merah)</label>
+                                    <input type="file" class="form-control" id="pas_foto">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="kartu_keluarga" class="form-label ">Kartu Keluarga</label>
+                                    <input type="file" class="form-control" id="kartu_keluarga">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="float-end">
+                                    <div class="cr-buttons">
+                                        <a href="{{route('dashboard-siswa.index')}}" class="cr-btn default-btn color-danger">Kembali</a>
+                                        <button type="submit" class="cr-btn default-btn color-info">Daftar Ulang</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $('#daftar-ulang').submit(function(){
+        event.preventDefault();
+        let inputIDs = [
+                    'sekolah_yang_dituju', 'jurusan', 'nisn', 'nik', 'nama_siswa', 'tempat_lahir', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'tinggi_badan',
+                    'alamat_kampung', 'jumlah_saudara', 'alamat_kelurahan', 'alamat_kota', 'jarak_rumah', 'waktu_tempuh', 'no_hp_siswa', 'nama_ayah',
+                    'pendidikan_ayah', 'pekerjaan_ayah', 'penghasilan_ayah', 'no_hp_orang_tua', 'nama_ibu', 'pekerjaan_ibu', 'penghasilan_ibu', 'pendidikan_ibu',
+                    'nama_wali', 'pekerjaan_wali', 'pendidikan_wali', 'penghasilan_wali', 'nama_sekolah', 'nomor_ijazah', 'ijazah', 'tahun_lulus', 'nomor_skhun',
+                    'skhun', 'alamat_sekolah', 'jenis_kejuaraan', 'nama_beasiswa', 'peringkat_kejuaraan', 'penyelengara_beasiswa', 'tingkat_kejuaraan', 'tahun_beasiswa',
+                    'pas_foto', 'kartu_keluarga'
+                ];
+
+        validateForm(inputIDs);
+    })
+    // Fungsi untuk melakukan validasi form
+    function validateForm(inputIDs) {
+            let isValid = true;
+
+            inputIDs.forEach(function(id) {
+                    let input = $('#' + id);
+                    if (!input.val()) {
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                });
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Data tidak boleh kosong!',
+                });
+            }
+
+            return isValid;
+        }
+</script>
 @endsection

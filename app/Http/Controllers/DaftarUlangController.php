@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormulirPendaftaran;
+use App\Models\Jurusan;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 
 class DaftarUlangController extends Controller
@@ -18,6 +20,8 @@ class DaftarUlangController extends Controller
         ->leftJoin('sekolahs', 'formulir_pendaftaran.sekolah_id', '=', 'sekolahs.id')
         ->leftJoin('jurusans', 'formulir_pendaftaran.jurusan_id', '=', 'jurusans.id')
         ->first();
-        return view('siswa.daftar_ulang.index');
+        $sekolah = Sekolah::all();
+        $jurusan = Jurusan::all();
+        return view('siswa.daftar_ulang.index',compact('siswa','sekolah','jurusan'));
     }
 }
