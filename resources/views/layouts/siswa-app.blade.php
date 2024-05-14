@@ -84,7 +84,18 @@
 										<li><a href="team-profile.html">Profile</a></li>
 									</ul>
 									<ul class="border-top">
-										<li><a href="signin.html"><i class="ri-logout-circle-r-line"></i>Logout</a></li>
+										<li>
+                                            <a class="dropdown-item" href="{{ route('login-siswa.logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                <i class="ri-logout-circle-r-line"></i>
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('login-siswa.logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </li>
 									</ul>
 								</div>
 							</div>

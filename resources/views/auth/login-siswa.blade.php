@@ -10,7 +10,7 @@
 	<meta name="description" content="Carrot - Admin.">
 	<meta name="author" content="ashishmaraviya">
 
-	<title>Carrot - Admin.</title>
+	<title>Carrot - Siswa</title>
 
 	<!-- App favicon -->
 	<link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
@@ -42,23 +42,25 @@
 						<div class="offset-lg-6 col-lg-6">
 							<div class="content-detail">
 								<div class="main-info">
-									<div class="hero-container">
+                                    <div class="hero-container">
 										<!-- Login form -->
-                                        <form method="POST" class="login-form" action="{{ route('login') }}">
+                                        <form method="POST" class="login-form" action="{{ route('login-siswa.login') }}">
                                             @csrf
 											<div class="imgcontainer">
 												<a href="index.html"><img src="assets/img/logo/full-logo.png" alt="logo" class="logo"></a>
 											</div>
 											<div class="input-control">
+
                                                 @if (session('error'))
                                                     <div class="alert alert-danger">
                                                         {{ session('error') }}
                                                     </div>
                                                 @endif
-												<input type="text" placeholder="Enter Username" name="email"
+
+												<input type="text" placeholder="NISN" name="nisn"
 													required>
 												<span class="password-field-show">
-													<input type="password" placeholder="Enter Password"
+													<input type="password" placeholder="Tanggal Lahir (ddmmyyyy)"
 														name="password" class="password-field" value="" required>
 													<span data-toggle=".password-field"
 														class="fa fa-fw fa-eye field-icon toggle-password"></span>
