@@ -34,3 +34,4 @@ Route::post('/formulir-pendaftaran/store',[\App\Http\Controllers\PPDB\FormulirPe
 
 Route::get('/dashboard-siswa',[\App\Http\Controllers\DashboardSiswaController::class,'index'])->name('dashboard-siswa.index');
 Route::get('/daftar-ulang',[\App\Http\Controllers\DaftarUlangController::class,'index'])->name('daftar-ulang.index');
+Route::post('/daftar-ulang/store',[\App\Http\Controllers\DaftarUlangController::class,'store'])->name('daftar-ulang.store');

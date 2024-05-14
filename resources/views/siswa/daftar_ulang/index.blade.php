@@ -200,16 +200,16 @@
                                     <input type="text" class="form-control" id="nama_ibu">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="pendidikan_ibu" class="form-label ">Pendidikan Ibu</label>
+                                    <input type="text" class="form-control" id="pendidikan_ibu">
+                                </div>
+                                <div class="mb-3">
                                     <label for="pekerjaan_ibu" class="form-label ">Pekerjaan Ibu</label>
                                     <input type="text" class="form-control" id="pekerjaan_ibu">
                                 </div>
                                 <div class="mb-3">
                                     <label for="penghasilan_ibu" class="form-label ">Penghasilan Ibu</label>
                                     <input type="text" class="form-control" id="penghasilan_ibu">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="pendidikan_ibu" class="form-label ">Pendidikan Ibu</label>
-                                    <input type="text" class="form-control" id="pendidikan_ibu">
                                 </div>
                             </div>
 
@@ -219,12 +219,12 @@
                                     <input type="text" class="form-control" id="nama_wali">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label ">Pekerjaan Wali</label>
-                                    <input type="text" class="form-control" id="pekerjaan_wali">
-                                </div>
-                                <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Pendidikan Wali</label>
                                     <input type="text" class="form-control" id="pendidikan_wali">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label ">Pekerjaan Wali</label>
+                                    <input type="text" class="form-control" id="pekerjaan_wali">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Penghasilan Wali</label>
@@ -255,7 +255,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="tahun_lulus" class="form-label ">Tahun Lulus</label>
-                                    <input type="text" class="form-control" id="tahun_lulus">
+                                    <input type="number" class="form-control" id="tahun_lulus">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nomor_skhun" class="form-label ">Nomor SKHUN</label>
@@ -306,7 +306,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="tahun_beasiswa" class="form-label ">Tahun Penerimaan Beasiswa</label>
-                                    <input type="text" class="form-control" id="tahun_beasiswa">
+                                    <input type="number" class="form-control" id="tahun_beasiswa">
                                 </div>
                             </div>
                         </div>
@@ -360,28 +360,203 @@
                     'pas_foto', 'kartu_keluarga'
                 ];
 
-        validateForm(inputIDs);
+        // let isValid = validateForm(inputIDs);
+        // if (!isValid) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Data tidak boleh kosong!',
+        //     });
+
+        //     return;
+        // }
+
+        let formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}');
+        formData.append('no_pendaftaran', $('#no_pendaftaran').val());
+        formData.append('sekolah_yang_dituju', $('#sekolah_yang_dituju').val());
+        formData.append('jurusan', $('#jurusan').val());
+        formData.append('nisn', $('#nisn').val());
+        formData.append('nik', $('#nik').val());
+        formData.append('nama_siswa', $('#nama_siswa').val());
+        formData.append('tempat_lahir', $('#tempat_lahir').val());
+        formData.append('jenis_kelamin', $('#jenis_kelamin').val());
+        formData.append('tanggal_lahir', $('#tanggal_lahir').val());
+        formData.append('agama', $('#agama').val());
+        formData.append('tinggi_badan', $('#tinggi_badan').val());
+        formData.append('alamat_kampung', $('#alamat_kampung').val());
+        formData.append('jumlah_saudara', $('#jumlah_saudara').val());
+        formData.append('alamat_kelurahan', $('#alamat_kelurahan').val());
+        formData.append('alamat_kota', $('#alamat_kota').val());
+        formData.append('jarak_rumah', $('#jarak_rumah').val());
+        formData.append('waktu_tempuh', $('#waktu_tempuh').val());
+        formData.append('no_hp_siswa', $('#no_hp_siswa').val());
+        formData.append('nama_ayah', $('#nama_ayah').val());
+        formData.append('pendidikan_ayah', $('#pendidikan_ayah').val());
+        formData.append('pekerjaan_ayah', $('#pekerjaan_ayah').val());
+        formData.append('penghasilan_ayah', $('#penghasilan_ayah').val());
+        formData.append('no_hp_orang_tua', $('#no_hp_orang_tua').val());
+        formData.append('nama_ibu', $('#nama_ibu').val());
+        formData.append('pekerjaan_ibu', $('#pekerjaan_ibu').val());
+        formData.append('penghasilan_ibu', $('#penghasilan_ibu').val());
+        formData.append('pendidikan_ibu', $('#pendidikan_ibu').val());
+        formData.append('nama_wali', $('#nama_wali').val());
+        formData.append('pekerjaan_wali', $('#pekerjaan_wali').val());
+        formData.append('pendidikan_wali', $('#pendidikan_wali').val());
+        formData.append('penghasilan_wali', $('#penghasilan_wali').val());
+        formData.append('nama_sekolah', $('#nama_sekolah').val());
+        formData.append('nomor_ijazah', $('#nomor_ijazah').val());
+        formData.append('ijazah', $('#ijazah')[0].files[0]);
+        formData.append('tahun_lulus', $('#tahun_lulus').val());
+        formData.append('nomor_skhun', $('#nomor_skhun').val());
+        formData.append('skhun', $('#skhun')[0].files[0]);
+        formData.append('alamat_sekolah', $('#alamat_sekolah').val());
+        formData.append('jenis_kejuaraan', $('#jenis_kejuaraan').val());
+        formData.append('nama_beasiswa', $('#nama_beasiswa').val());
+        formData.append('peringkat_kejuaraan', $('#peringkat_kejuaraan').val());
+        formData.append('penyelengara_beasiswa', $('#penyelengara_beasiswa').val());
+        formData.append('tingkat_kejuaraan', $('#tingkat_kejuaraan').val());
+        formData.append('tahun_beasiswa', $('#tahun_beasiswa').val());
+        formData.append('pas_foto', $('#pas_foto')[0].files[0]);
+        formData.append('kartu_keluarga', $('#kartu_keluarga')[0].files[0]);
+
+        $.ajax({
+            url: '{{ route('daftar-ulang.store') }}',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: response.message,
+                }).then(function() {
+                    window.location.href = '{{ route('dashboard-siswa.index') }}';
+                });
+            },
+            error: function(xhr) {
+                let res = xhr.responseJSON;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.message,
+                });
+            }
+        });
     })
     // Fungsi untuk melakukan validasi form
     function validateForm(inputIDs) {
             let isValid = true;
-
             inputIDs.forEach(function(id) {
-                    let input = $('#' + id);
+                let input = $('#' + id);
+                if (id == 'nama_ayah'){
+                    if(!$('#nama_ayah').val() && !$('#nama_ibu').val()){
+                        if(!$('#nama_wali').val()){
+                            input.addClass('is-invalid');
+                            isValid = false;
+                        } else {
+                            input.removeClass('is-invalid');
+                        }
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+
+                }else if (id == 'nama_ibu'){
+                    if(!$('#nama_ibu').val() && !$('#nama_ayah').val()){
+                        if(!$('#nama_wali').val()){
+                            input.addClass('is-invalid');
+                            isValid = false;
+                        } else {
+                            input.removeClass('is-invalid');
+                        }
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if (id == 'nama_wali'){
+                    if(!$('#nama_ayah').val() && !$('#nama_ibu').val()){
+                        if(!$('#nama_wali').val()){
+                            input.addClass('is-invalid');
+                            isValid = false;
+                        } else {
+                            input.removeClass('is-invalid');
+                        }
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pekerjaan_ayah'){
+                    if(!$('#pekerjaan_wali').val() && !$('#pekerjaan_ayah').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pekerjaan_ibu'){
+                    if(!$('#pekerjaan_wali').val() && !$('#pekerjaan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pekerjaan_wali'){
+                    if(!$('#pekerjaan_ayah').val() || !$('#pekerjaan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'penghasilan_ayah'){
+                    if(!$('#penghasilan_wali').val() && !$('#penghasilan_ayah').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'penghasilan_ibu'){
+                    if(!$('#penghasilan_wali').val() && !$('#penghasilan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'penghasilan_wali'){
+                    if(!$('#penghasilan_ayah').val() || !$('#penghasilan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pendidikan_ayah'){
+                    if(!$('#pendidikan_wali').val() && !$('#pendidikan_ayah').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pendidikan_ibu'){
+                    if(!$('#pendidikan_wali').val() && !$('#pendidikan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else if(id == 'pendidikan_wali'){
+                    if(!$('#pendidikan_ayah').val() || !$('#pendidikan_ibu').val()){
+                        input.addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.removeClass('is-invalid');
+                    }
+                }else{
                     if (!input.val()) {
                         input.addClass('is-invalid');
                         isValid = false;
                     } else {
                         input.removeClass('is-invalid');
                     }
-                });
-            if (!isValid) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Data tidak boleh kosong!',
-                });
-            }
+                }
+
+            });
 
             return isValid;
         }
