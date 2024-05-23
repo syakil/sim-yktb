@@ -147,7 +147,7 @@
                 <div style="text-align:center;margin-left:30px;">{!! DNS1D::getBarcodeHTML($data['siswa']['no_pendaftaran'], 'CODABAR') !!}</div>
 
                 <div>
-                    Username : {{$data['siswa']['no_pendaftaran']}} <br>
+                    Username : {{$data['siswa']['nisn']}} <br>
                     Password : {{$data['password']}}
                 </div>
             </td>
