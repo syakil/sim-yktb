@@ -102,7 +102,7 @@ class FormulirPendaftaranController extends Controller
         }
         $tahunIni = date('Y');
         $tahunDepan = $tahunIni + 1;
-        $url = config('app.url').'/daftar-ulang/login/'.$noPendaftaran;
+        $url = config('app.url').'/login-siswa';
 
         $tanggalDaftarUlang = $date->translatedFormat('d M Y');
         $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
