@@ -53,7 +53,6 @@
     </style>
 </head>
 <body>
-    <h2 style="text-align: center">Tanda Bukti Pendaftaran</h2>
 <div class="header">
     <p>Penerimaan Peserta Didik Baru</p>
     <p class="yayasan">Yayasan Kejuruan Teknologi Bogor<br>
@@ -65,7 +64,6 @@
 <table>
     <tr>
         <td style="text-align: left;">
-            <b>Tanda Bukti Formulir Pendaftaran</b><br>
             <b>Penerimaan Peserta Didik Baru</b><br>
             Tahun Pelajaran {{ $data['tahunAjaran'] }}
         </td>
@@ -83,10 +81,10 @@
         </td>
     </tr>
     <tr class="info">
-        <td style="text-align: left;">No Pendaftaran</td>
-        <td style="text-align: left;">Sekolah Yang Di Tuju</td>
+        <td style="width:120px;text-align: left;">No Pendaftaran</td>
+        <td style="width:130px;text-align: left;">Sekolah Yang Di Tuju</td>
         <td style="text-align: left;">Jurusan</td>
-        <td style="text-align: left;">Tanggal Pendaftaran</td>
+        <td style="width:130px;text-align: left;">Tanggal Pendaftaran</td>
     </tr>
     <tr>
         <td style="text-align: left;">{{$data['siswa']['no_pendaftaran']}}</td>
@@ -99,7 +97,7 @@
 <div class="side-by-side-60">
     <table>
         <tr>
-            <td colspan="2">Biodata Siswa</td>
+            <td colspan="2"><b>Biodata Siswa</b></td>
         </tr>
         <tr>
             <td class="info" style="text-align: right">NISN</td>
@@ -138,7 +136,7 @@
 <div class="side-by-side-40">
     <table>
         <tr>
-            <td>Link Daftar Ulang</td>
+            <td><b>Link Daftar Ulang<</b></td>
         </tr>
         <tr>
             <td style="text-align: center">
@@ -147,7 +145,11 @@
                 <img style="width:150px;margin-bottom:10px;" src="data:image/png;base64, {!! $data['qrcode'] !!}">
                 {{-- <img style="width:150px;" src="{{public_path('barcode.gif')}}" alt=""> --}}
                 <div style="text-align:center;margin-left:30px;">{!! DNS1D::getBarcodeHTML($data['siswa']['no_pendaftaran'], 'CODABAR') !!}</div>
-                <small>{{$data['siswa']['no_pendaftaran']}}</small>
+
+                <div>
+                    Username : {{$data['siswa']['no_pendaftaran']}} <br>
+                    Password : {{$data['password']}}
+                </div>
             </td>
         </tr>
     </table>

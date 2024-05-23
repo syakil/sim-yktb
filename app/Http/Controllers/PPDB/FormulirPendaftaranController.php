@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FormulirPendaftaran;
 use App\Models\Jurusan;
 use App\Models\Sekolah;
+use App\Models\User;
 use App\Repositories\FormulirPendaftaranRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -13,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+use function Laravel\Prompts\password;
 
 class FormulirPendaftaranController extends Controller
 {
@@ -81,6 +84,9 @@ class FormulirPendaftaranController extends Controller
         ->leftJoin('jurusans','jurusans.id','formulir_pendaftaran.jurusan_id')
         ->first();
         Carbon::setLocale('id');
+        $password =  Carbon::parse($siswa->tanggal_lahir)->format('dmY');
+
+
         $tanggalDaftar = Carbon::parse($siswa->created_at)->translatedFormat('d M Y');
         $tanggalLahir = Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d M Y');
         $tanggalDaftarUlang = Carbon::parse($siswa->created_at);
@@ -103,13 +109,14 @@ class FormulirPendaftaranController extends Controller
         $data= [
             'siswa' => $siswa,
             'tanggal' => $tanggalDaftar,
+            'password' => $password,
             'tanggal_lahir' => $tanggalLahir,
             'tanggal_daftar_ulang' => $tanggalDaftarUlang,
             'tahunAjaran' => $tahunIni.'/'.$tahunDepan,
             'qrcode' => $qrcode
         ];
         $pdf =Pdf::loadView('ppdb.formulir_pendaftaran.blangko',['data'=>$data]);
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('blangko.pdf');
     }
 
     public function generate()
