@@ -37,3 +37,5 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/daftar-ulang',[\App\Http\Controllers\DaftarUlangController::class,'index'])->name('daftar-ulang.index');
     Route::post('/daftar-ulang/store',[\App\Http\Controllers\DaftarUlangController::class,'store'])->name('daftar-ulang.store');
 });
+
+Route::get('/jurusan',[\App\Http\Controllers\PPDB\JurusanController::class,'getJurusan'])->name('jurusan.getJurusan');

@@ -44,11 +44,11 @@ return new class extends Migration
             $table->string('pendidikan_wali')->nullable();
             $table->integer('penghasilan_wali')->nullable();
             $table->string('asal_sekolah');
-            $table->string('nomor_ijazah');
-            $table->string('ijazah');
+            $table->string('nomor_ijazah')->nullable();
+            $table->string('ijazah')->nullable();
             $table->integer('tahun_lulus');
-            $table->string('nomor_skhun');
-            $table->string('skhun');
+            $table->string('nomor_skhun')->nullable();
+            $table->string('skhun')->nullable();
             $table->string('alamat_sekolah');
             $table->string('jenis_kejuaraan')->nullable();
             $table->string('nama_beasiswa')->nullable();

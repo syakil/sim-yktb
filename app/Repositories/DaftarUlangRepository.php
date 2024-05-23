@@ -46,9 +46,9 @@ class DaftarUlangRepository extends BaseRepository
             DB::beginTransaction();
 
             $ijazah = $request->file('ijazah');
-            $ijazahName = $request->no_pendaftaran.'_ijazah.'.$ijazah->extension();
+            $ijazahName = !$request->file('ijazah') ? '':$request->no_pendaftaran.'_ijazah.'.$ijazah->extension();
             $skhun = $request->file('skhun');
-            $skhunName = $request->no_pendaftaran.'_skhun.'.$skhun->extension();
+            $skhunName = !$request->file('skhun') ? '': $request->no_pendaftaran.'_skhun.'.$skhun->extension();
             $pasFoto = $request->file('pas_foto');
             $pasFotoName = $request->no_pendaftaran.'_pas_foto.'.$pasFoto->extension();
             $kartuKeluarga = $request->file('kartu_keluarga');
@@ -104,8 +104,12 @@ class DaftarUlangRepository extends BaseRepository
             $calonSiswa->created_by = auth()->user()->id;
             $calonSiswa->save();
 
-            $ijazah->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $ijazahName);
-            $skhun->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $skhunName);
+            if($request->file('ijazah')){
+                $ijazah->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $ijazahName);
+            }
+            if($request->file('skhun')){
+                $skhun->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $skhunName);
+            }
             $pasFoto->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $pasFotoName);
             $kartuKeluarga->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $kartuKeluargaName);
 

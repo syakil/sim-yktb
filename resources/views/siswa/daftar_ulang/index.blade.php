@@ -35,27 +35,40 @@
                                     <label for="no_pendaftaran" class="form-label">No Pendaftaran</label>
                                     <input type="text" class="form-control" id="no_pendaftaran" value="{{$siswa->no_pendaftaran}}" readonly>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="sekolah_yang_dituju" class="form-label">Sekolah Yang Dituju</label>
-                                    <select class="form-control" id="sekolah_yang_dituju">
-                                        @foreach ($sekolah as $list)
-                                            <option value="{{$list->id}}" {{$siswa->sekolah_yang_dituju == $list->id ? 'selected' : ''}}>{{$list->nama_sekolah}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="tanggal_pendaftaran" class="form-label">Tanggal Pendaftaran</label>
                                     <input type="text" class="form-control" id="tanggal_pendaftaran" value="{{$siswa->created_at}}" readonly>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="jurusan" class="form-label">Jurusan</label>
-                                    <select class="form-control" id="jurusan">
-                                        @foreach ($jurusan as $list)
-                                            <option value="{{$list->id}}" {{$siswa->jurusan == $list->id ? 'selected' : ''}}>{{$list->nama_jurusan}}</option>
-                                        @endforeach
-                                    </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="sekolah_yang_dituju" class="form-label">Sekolah Yang Dituju</label>
+                                        <select class="form-control" id="sekolah_yang_dituju">
+                                            @foreach ($sekolah as $list)
+                                                <option value="{{$list->id}}" {{$siswa->sekolah_yang_dituju == $list->id ? 'selected' : ''}}>{{$list->nama_sekolah}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="mb-3">
+                                        <label for="jurusan" class="form-label">Jurusan</label>
+                                        <select class="form-control" id="jurusan">
+                                            @foreach ($jurusan as $list)
+                                                <option value="{{$list->id}}" {{$siswa->jurusan_id == $list->id ? 'selected' : ''}}>{{$list->nama_jurusan}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                                        <textarea id="deskripsi" class="form-control" cols="4" rows="4" readonly >{{$siswa->deskripsi}}</textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +113,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="tanggal_lahir">
+                                    <input type="date" class="form-control" id="tanggal_lahir" value="{{$siswa->tanggal_lahir}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -118,7 +131,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Tinggin Badan (cm)</label>
+                                    <label for="" class="form-label">Tinggin Badan (CM)</label>
                                     <input type="number" class="form-control" id="tinggi_badan">
                                 </div>
                             </div>
@@ -126,7 +139,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="alamat_kampung" class="form-label">Alamat(Kampung)</label>
+                                    <label for="alamat_kampung" class="form-label">Alamat (Kampung)</label>
                                     <textarea name="alamat_kampung" cols="30" rows="3" class="form-control" id="alamat_kampung"></textarea>
                                 </div>
                                 <div class="mb-3">
@@ -136,13 +149,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="alamat_kelurahan" class="form-label">Alamat(Kelurahan/Desa)</label>
+                                    <label for="alamat_kelurahan" class="form-label">Alamat (Kelurahan/Desa)</label>
                                     <input type="text" class="form-control" id="alamat_kelurahan">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="alamat_kota" class="form-label">Alamat(Kota)</label>
+                                    <label for="alamat_kota" class="form-label">Alamat (Kota)</label>
                                     <input type="text" class="form-control" id="alamat_kota">
                                 </div>
                             </div>
@@ -150,13 +163,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="jarak_rumah" class="form-label">Jarak Rumah Ke Sekolah(KM)</label>
+                                    <label for="jarak_rumah" class="form-label">Jarak Rumah Ke Sekolah (KM)</label>
                                     <input type="number" class="form-control" id="jarak_rumah">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label for="waktu_tempuh" class="form-label">Waktu Tempuh Rumah Ke Sekolah(Menit)</label>
+                                    <label for="waktu_tempuh" class="form-label">Waktu Tempuh Rumah Ke Sekolah (Menit)</label>
                                     <input type="number" class="form-control" id="waktu_tempuh">
                                 </div>
                             </div>
@@ -191,7 +204,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="no_hp_orang_tua" class="form-label ">No Handphone Wali/Orang Tua</label>
-                                    <input type="text" class="form-control" id="no_hp_orang_tua">
+                                    <input type="text" class="form-control" value="{{$siswa->no_hp_orang_tua}}" id="no_hp_orang_tua">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -255,7 +268,16 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="tahun_lulus" class="form-label ">Tahun Lulus</label>
-                                    <input type="number" class="form-control" id="tahun_lulus">
+                                    <select id="tahun_lulus" name="tahun_lulus" class="form-control">
+                                        <option value="">Pilih Tahun</option>
+                                        <script>
+                                          const startYear = new Date().getFullYear() - (21-18);
+                                          const endYear = new Date().getFullYear();
+                                          for (let year = startYear; year <= endYear; year++) {
+                                            document.write('<option value="' + year + '">' + year + '</option>');
+                                          }
+                                        </script>
+                                      </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nomor_skhun" class="form-label ">Nomor SKHUN</label>
@@ -349,27 +371,143 @@
 
 @section('script')
 <script>
+
+    $('#no_hp_siswa,#no_hp_orang_tua').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 12 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    $('#nik').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 16 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    $('#jarak_rumah,#waktu_tempuh,#jumlah_saudara,#tinggi_badan').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 5 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+    $('#penghasilan_ayah,#penghasilan_ibu,#penghasilan_wali').keydown(function(e) {
+        // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            // Perbolehkan: Ctrl/cmd+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+C
+            (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: Ctrl/cmd+X
+            (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            // Perbolehkan: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // Biarkan kejadian tersebut terjadi, jangan lakukan apa-apa
+            return;
+        }
+        // Pastikan bahwa itu adalah angka, jumlahnya kurang dari 12, dan hentikan kejadian keypress
+        if ((this.value.length >= 20 && !(e.keyCode === 8 || e.keyCode === 46)) || // Menghentikan lebih dari 12 angka dan membolehkan delete dan backspace
+        (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+
+    $('#jurusan').on('change',function(){
+        let jurusan = $(this).val();
+        $.ajax({
+            url: "{{ route('jurusan.getJurusan') }}",
+            type: 'GET',
+            data: {jurusan: jurusan},
+            success: function(response) {
+                $('#deskripsi').val(response.data.deskripsi);
+            },
+            error: function(xhr) {
+                let res = xhr.responseJSON;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: res.message,
+                });
+            }
+        });
+    })
+
     $('#daftar-ulang').submit(function(){
         event.preventDefault();
         let inputIDs = [
                     'sekolah_yang_dituju', 'jurusan', 'nisn', 'nik', 'nama_siswa', 'tempat_lahir', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'tinggi_badan',
-                    'alamat_kampung', 'jumlah_saudara', 'alamat_kelurahan', 'alamat_kota', 'jarak_rumah', 'waktu_tempuh', 'no_hp_siswa', 'nama_ayah',
-                    'pendidikan_ayah', 'pekerjaan_ayah', 'penghasilan_ayah', 'no_hp_orang_tua', 'nama_ibu', 'pekerjaan_ibu', 'penghasilan_ibu', 'pendidikan_ibu',
-                    'nama_wali', 'pekerjaan_wali', 'pendidikan_wali', 'penghasilan_wali', 'nama_sekolah', 'nomor_ijazah', 'ijazah', 'tahun_lulus', 'nomor_skhun',
-                    'skhun', 'alamat_sekolah', 'jenis_kejuaraan', 'nama_beasiswa', 'peringkat_kejuaraan', 'penyelengara_beasiswa', 'tingkat_kejuaraan', 'tahun_beasiswa',
-                    'pas_foto', 'kartu_keluarga'
+                    'alamat_kampung', 'jumlah_saudara', 'alamat_kelurahan', 'alamat_kota', 'jarak_rumah', 'waktu_tempuh', 'no_hp_siswa','nama_sekolah', 'tahun_lulus',
+                    'alamat_sekolah','pas_foto', 'kartu_keluarga'
                 ];
 
-        // let isValid = validateForm(inputIDs);
-        // if (!isValid) {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Data tidak boleh kosong!',
-        //     });
+        let isValid = validateForm(inputIDs);
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Data tidak boleh kosong!',
+            });
 
-        //     return;
-        // }
+            return;
+        }
+
+        if($('#nik').val().length < 16){
+            $('#nik').addClass('is-invalid');
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'NIK harus 16 digit!',
+            });
+            return;
+        }else{
+            $('#nik').removeClass('is-invalid');
+        }
+
 
         let formData = new FormData();
         formData.append('_token', '{{ csrf_token() }}');
@@ -447,118 +585,58 @@
     })
     // Fungsi untuk melakukan validasi form
     function validateForm(inputIDs) {
-            let isValid = true;
-            inputIDs.forEach(function(id) {
-                let input = $('#' + id);
-                if (id == 'nama_ayah'){
-                    if(!$('#nama_ayah').val() && !$('#nama_ibu').val()){
-                        if(!$('#nama_wali').val()){
-                            input.addClass('is-invalid');
-                            isValid = false;
-                        } else {
-                            input.removeClass('is-invalid');
-                        }
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-
-                }else if (id == 'nama_ibu'){
-                    if(!$('#nama_ibu').val() && !$('#nama_ayah').val()){
-                        if(!$('#nama_wali').val()){
-                            input.addClass('is-invalid');
-                            isValid = false;
-                        } else {
-                            input.removeClass('is-invalid');
-                        }
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if (id == 'nama_wali'){
-                    if(!$('#nama_ayah').val() && !$('#nama_ibu').val()){
-                        if(!$('#nama_wali').val()){
-                            input.addClass('is-invalid');
-                            isValid = false;
-                        } else {
-                            input.removeClass('is-invalid');
-                        }
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pekerjaan_ayah'){
-                    if(!$('#pekerjaan_wali').val() && !$('#pekerjaan_ayah').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pekerjaan_ibu'){
-                    if(!$('#pekerjaan_wali').val() && !$('#pekerjaan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pekerjaan_wali'){
-                    if(!$('#pekerjaan_ayah').val() || !$('#pekerjaan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'penghasilan_ayah'){
-                    if(!$('#penghasilan_wali').val() && !$('#penghasilan_ayah').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'penghasilan_ibu'){
-                    if(!$('#penghasilan_wali').val() && !$('#penghasilan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'penghasilan_wali'){
-                    if(!$('#penghasilan_ayah').val() || !$('#penghasilan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pendidikan_ayah'){
-                    if(!$('#pendidikan_wali').val() && !$('#pendidikan_ayah').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pendidikan_ibu'){
-                    if(!$('#pendidikan_wali').val() && !$('#pendidikan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else if(id == 'pendidikan_wali'){
-                    if(!$('#pendidikan_ayah').val() || !$('#pendidikan_ibu').val()){
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }else{
-                    if (!input.val()) {
-                        input.addClass('is-invalid');
-                        isValid = false;
-                    } else {
-                        input.removeClass('is-invalid');
-                    }
-                }
-
-            });
-
-            return isValid;
+        let isValid = true;
+        inputIDs.forEach(function(id) {
+            let input = $('#' + id);
+            if (!input.val()) {
+                input.addClass('is-invalid');
+                isValid = false;
+            } else {
+                input.removeClass('is-invalid');
+            }
+        });
+        if(!$('#nama_ayah').val() && !$('#nama_ibu').val()){
+            if(!$('#nama_wali').val()){
+                $('#nama_wali').addClass('is-invalid');
+                parentValid = false;
+            }else{
+                $('#nama_wali').removeClass('is-invalid');
+            }
+        }else{
+            $('#nama_wali').removeClass('is-invalid');
         }
+        if(!$('#pendidikan_ayah').val() && !$('#pendidikan_ibu').val()){
+            if(!$('#pendidikan_wali').val()){
+                $('#pendidikan_wali').addClass('is-invalid');
+                parentValid = false;
+            }else{
+                $('#pendidikan_wali').removeClass('is-invalid');
+            }
+        }else{
+            $('#pendidikan_wali').removeClass('is-invalid');
+        }
+        if(!$('#pekerjaan_ayah').val() && !$('#pekerjaan_ibu').val()){
+            if(!$('#pekerjaan_wali').val()){
+                $('#pekerjaan_wali').addClass('is-invalid');
+                parentValid = false;
+            }else{
+                $('#pekerjaan_wali').removeClass('is-invalid');
+            }
+        }else{
+            $('#pekerjaan_wali').removeClass('is-invalid');
+        }
+        if(!$('#penghasilan_ayah').val() && !$('#penghasilan_ibu').val()){
+            if(!$('#penghasilan_wali').val()){
+                $('#penghasilan_wali').addClass('is-invalid');
+                parentValid = false;
+            }else{
+                $('#penghasilan_wali').removeClass('is-invalid');
+            }
+        }else{
+            $('#penghasilan_wali').removeClass('is-invalid');
+        }
+        return isValid;
+    }
+
 </script>
 @endsection

@@ -22,7 +22,7 @@ class DaftarUlangController extends Controller
         if($daftarUlang){
             return redirect()->route('dashboard-siswa.index');
         }
-        $siswa = FormulirPendaftaran::select('formulir_pendaftaran.*', 'sekolahs.nama_sekolah', 'jurusans.nama_jurusan')
+        $siswa = FormulirPendaftaran::select('formulir_pendaftaran.*', 'sekolahs.nama_sekolah', 'jurusans.nama_jurusan','jurusans.deskripsi')
         ->where('nisn', auth()->user()->id)
         ->leftJoin('sekolahs', 'formulir_pendaftaran.sekolah_id', '=', 'sekolahs.id')
         ->leftJoin('jurusans', 'formulir_pendaftaran.jurusan_id', '=', 'jurusans.id')
@@ -35,10 +35,8 @@ class DaftarUlangController extends Controller
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'pas_foto' => 'required|image|mimes:pdf,jpeg,png,jpg,gif|max:2048',
-            'ijazah' => 'required|image|mimes:pdf,jpeg,png,jpg,gif|max:2048',
-            'kartu_keluarga' => 'required|image|mimes:pdf,jpeg,png,jpg,gif|max:2048',
-            'skhun' => 'required|image|mimes:pdf,jpeg,png,jpg,gif|max:2048',
+            'pas_foto' => 'required|mimes:pdf,jpeg,png,jpg,gif|max:2048',
+            'kartu_keluarga' => 'required|mimes:pdf,jpeg,png,jpg,gif|max:2048',
         ]);
         if ($validator->fails()) {
             return response()->json([
