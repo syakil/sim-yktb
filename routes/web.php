@@ -30,6 +30,11 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/formulir-pendaftaran/getData',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'getData'])->name('formulir-pendaftaran.data');
     Route::get('/formulir-pendaftaran/download/{noPendaftaran}',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'downloadData'])->name('formulir-pendaftaran.download');
     Route::post('/formulir-pendaftaran/store',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'store'])->name('formulir-pendaftaran.store');
+
+    Route::get('/validasi-daftar-ulang',[\App\Http\Controllers\ValidasiDaftarUlangController::class,'index'])->name('validasi-daftar-ulang.index');
+    Route::get('/validasi-daftar-ulang/getData',[\App\Http\Controllers\ValidasiDaftarUlangController::class,'getData'])->name('validasi-daftar-ulang.data');
+    Route::get('/validasi-daftar-ulang/detail/{noPendaftaran}',[\App\Http\Controllers\ValidasiDaftarUlangController::class,'detail'])->name('validasi-daftar-ulang.detail');
+
 });
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {

@@ -61,6 +61,42 @@ class FormulirPendaftaranRepository extends BaseRepository
 
     }
 
+    public static function getListPendaftarVerifikasi($request){
+
+        $list = FormulirPendaftaran::select('formulir_pendaftaran.*','sekolahs.nama_sekolah','jurusans.nama_jurusan')
+        ->where('status_daftar_ulang',1)
+        ->leftJoin('sekolahs','formulir_pendaftaran.sekolah_id','=','sekolahs.id')
+        ->leftJoin('jurusans','formulir_pendaftaran.jurusan_id','=','jurusans.id')
+        ->orderBy('no_pendaftaran','asc');
+
+        if($request->filled('no_pendaftaran')){
+            $list->where('no_pendaftaran','like','%'.$request->no_pendaftaran.'%');
+        }
+
+        if($request->filled('sekolah_yang_dituju')){
+            $list->where('sekolah_id','like','%'.$request->sekolah_yang_dituju.'%');
+        }
+
+        if($request->filled('jurusan')){
+            $list->where('jurusans.id','like','%'.$request->jurusan.'%');
+        }
+
+        if($request->filled('nama_siswa')){
+            $list->where('nama_siswa','like','%'.$request->nama_siswa.'%');
+        }
+
+        if($request->filled('no_hp')){
+            $list->where('no_hp_orang_tua','like','%'.$request->no_hp.'%');
+        }
+
+        if($request->filled('tanggal_pendaftaran')){
+            $list->where('formulir_pendaftaran.created_at','like', $request->tanggal_pendaftaran.'%');
+        }
+
+        return $list->get();
+
+    }
+
     public static function store($request)
     {
         try {

@@ -22,21 +22,21 @@
 	<link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
 
 	<!-- Icon CSS -->
-	<link href="assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
-	<link href="assets/css/vendor/remixicon.css" rel="stylesheet">
-	<link href="assets/css/vendor/owl.carousel.min.css" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/materialdesignicons.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/remixicon.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/owl.carousel.min.css')}}" rel="stylesheet">
 
 	<!-- Vendor CSS -->
-	<link href='assets/css/vendor/datatables.bootstrap5.min.css' rel='stylesheet'>
-	<link href='assets/css/vendor/responsive.datatables.min.css' rel='stylesheet'>
-	<link href='assets/css/vendor/daterangepicker.css' rel='stylesheet'>
-	<link href="assets/css/vendor/simplebar.css" rel="stylesheet">
-	<link href="assets/css/vendor/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/vendor/apexcharts.css" rel="stylesheet">
-	<link href="assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+	<link href='{{asset('assets/css/vendor/datatables.bootstrap5.min.css')}}' rel='stylesheet'>
+	<link href='{{asset('assets/css/vendor/responsive.datatables.min.css')}}' rel='stylesheet'>
+	<link href='{{asset('assets/css/vendor/daterangepicker.css')}}' rel='stylesheet'>
+	<link href="{{asset('assets/css/vendor/simplebar.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/apexcharts.css')}}" rel="stylesheet">
+	<link href="{{asset('assets/css/vendor/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
 
 	<!-- Main CSS -->
-	<link id="main-css" href="assets/css/style.css" rel="stylesheet">
+	<link id="main-css" href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
 </head>
 
@@ -72,7 +72,7 @@
 						<div class="cr-right-tool cr-user-drop">
 							<div class="cr-hover-drop">
 								<div class="cr-hover-tool">
-									<img class="user" src="assets/img/user/1.jpg" alt="user">
+									<img class="user" src="{{asset('assets/img/user/1.jpg')}}" alt="user">
 								</div>
 								<div class="cr-hover-drop-panel right">
 									<div class="details">
@@ -108,8 +108,8 @@
 		<div class="cr-sidebar-overlay"></div>
 		<div class="cr-sidebar" data-mode="light">
 			<div class="cr-sb-logo">
-				<a href="index.html" class="sb-full"><img src="assets/img/logo/full-logo.png" alt="logo"></a>
-				<a href="index.html" class="sb-collapse"><img src="assets/img/logo/collapse-logo.png" alt="logo"></a>
+				<a href="index.html" class="sb-full"><img src="{{asset('assets/img/logo/full-logo.png')}}" alt="logo"></a>
+				<a href="index.html" class="sb-collapse"><img src="{{asset('assets/img/logo/collapse-logo.png')}}" alt="logo"></a>
 			</div>
 			<div class="cr-sb-wrapper">
 				<div class="cr-sb-content">
@@ -133,7 +133,7 @@
 							<ul class="cr-sb-drop condense">
 								<li><a href="{{route('formulir-pendaftaran.index')}}" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i></i>Formulir Pendaftaran</a></li>
-								<li><a href="signup.html" class="cr-page-link drop"><i
+								<li><a href="{{route('validasi-daftar-ulang.index')}}" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i>Daftar Ulang</a></li>
 							</ul>
 						</li>
@@ -163,29 +163,29 @@
 	</main>
 
 	<!-- Vendor Custom -->
-	<script src="assets/js/vendor/jquery-3.6.4.min.js"></script>
-	<script src="assets/js/vendor/simplebar.min.js"></script>
-	<script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/vendor/apexcharts.min.js"></script>
-	<script src="assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="assets/js/vendor/owl.carousel.min.js"></script>
+	<script src="{{asset('assets/js/vendor/jquery-3.6.4.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/simplebar.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/apexcharts.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/owl.carousel.min.js')}}"></script>
 	<!-- Data Tables -->
-	<script src='assets/js/vendor/jquery.datatables.min.js'></script>
-	<script src='assets/js/vendor/datatables.bootstrap5.min.js'></script>
-	<script src='assets/js/vendor/datatables.responsive.min.js'></script>
+	<script src='{{asset('assets/js/vendor/jquery.datatables.min.js')}}'></script>
+	<script src='{{asset('assets/js/vendor/datatables.bootstrap5.min.js')}}'></script>
+	<script src='{{asset('assets/js/vendor/datatables.responsive.min.js')}}'></script>
 	<!-- Caleddar -->
-	<script src="assets/js/vendor/jquery.simple-calendar.js"></script>
+	<script src="{{asset('assets/js/vendor/jquery.simple-calendar.js')}}"></script>
 	<!-- Date Range Picker -->
-	<script src="assets/js/vendor/moment.min.js"></script>
-	<script src="assets/js/vendor/daterangepicker.js"></script>
-	<script src="assets/js/vendor/date-range.js"></script>
-	<script src="assets/js/vendor/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="{{asset('assets/js/vendor/moment.min.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/daterangepicker.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/date-range.js')}}"></script>
+	<script src="{{asset('assets/js/vendor/select2.min.js')}}"></script>
+    <script src="{{asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 
 	<!-- Main Custom -->
-	<script src="assets/js/main.js"></script>
+	<script src="{{asset('assets/js/main.js')}}"></script>
     @yield('script')
 </body>
 

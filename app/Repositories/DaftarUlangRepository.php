@@ -114,8 +114,17 @@ class DaftarUlangRepository extends BaseRepository
             $kartuKeluarga->move(public_path('daftar_ulang/'.$request->no_pendaftaran), $kartuKeluargaName);
 
             $formulirPendaftaran = FormulirPendaftaran::where('nisn', auth()->user()->id)->first();
+            $formulirPendaftaran->nama_siswa = $request->nama_siswa;
+            $formulirPendaftaran->jenis_kelamin = $request->jenis_kelamin;
+            $formulirPendaftaran->asal_sekolah = $request->nama_sekolah;
+            $formulirPendaftaran->tanggal_lahir = $request->tanggal_lahir;
+            $formulirPendaftaran->jurusan_id = $request->jurusan;
+            $formulirPendaftaran->sekolah_id = $request->sekolah_yang_dituju;
+            $formulirPendaftaran->no_hp_orang_tua = $request->no_hp_orang_tua;
+            $formulirPendaftaran->no_hp_siswa = $request->no_hp_siswa;
             $formulirPendaftaran->status_daftar_ulang = 1;
             $formulirPendaftaran->update();
+
 
             $result->status = true;
             $result->message = 'Data berhasil disimpan';
