@@ -49,9 +49,7 @@ class FormulirPendaftaranController extends Controller
                     <span class="sr-only"><i class="ri-settings-3-line"></i></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Edit</a>
                     <a class="dropdown-item" target="_blank" href="'.route("formulir-pendaftaran.download",$list->no_pendaftaran).'">Cetak Blangko</a>
-                    <a class="dropdown-item" href="#">Delete</a>
                 </div>
             </div>
             ';
