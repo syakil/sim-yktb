@@ -77,7 +77,9 @@
 @section('script')
 <script>
     var table;
-
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("no_pendaftaran").focus();
+    });
     var params = function param(){
         return{
             no_pendaftaran : $('#no_pendaftaran').val()

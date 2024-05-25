@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\FormulirPendaftaran;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\CalonSiswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
@@ -63,18 +64,18 @@ class FormulirPendaftaranRepository extends BaseRepository
 
     public static function getListPendaftarVerifikasi($request){
 
-        $list = FormulirPendaftaran::select('formulir_pendaftaran.*','sekolahs.nama_sekolah','jurusans.nama_jurusan')
-        ->where('status_daftar_ulang',1)
-        ->leftJoin('sekolahs','formulir_pendaftaran.sekolah_id','=','sekolahs.id')
-        ->leftJoin('jurusans','formulir_pendaftaran.jurusan_id','=','jurusans.id')
+        $list = CalonSiswa::select('calon_siswas.*','data_siswas.nisn as status_data_siswa','sekolahs.nama_sekolah','jurusans.nama_jurusan')
+        ->leftJoin('data_siswas','data_siswas.nisn','=','calon_siswas.nisn')
+        ->leftJoin('sekolahs','calon_siswas.sekolah_yang_dituju','=','sekolahs.id')
+        ->leftJoin('jurusans','calon_siswas.jurusan','=','jurusans.id')
         ->orderBy('no_pendaftaran','asc');
 
         if($request->filled('no_pendaftaran')){
-            $list->where('no_pendaftaran','like','%'.$request->no_pendaftaran.'%');
+            $list->where('calon_siswas.no_pendaftaran','like','%'.$request->no_pendaftaran.'%');
         }
 
         if($request->filled('sekolah_yang_dituju')){
-            $list->where('sekolah_id','like','%'.$request->sekolah_yang_dituju.'%');
+            $list->where('calon_siswas.sekolah_yang_dituju','like','%'.$request->sekolah_yang_dituju.'%');
         }
 
         if($request->filled('jurusan')){
@@ -82,15 +83,15 @@ class FormulirPendaftaranRepository extends BaseRepository
         }
 
         if($request->filled('nama_siswa')){
-            $list->where('nama_siswa','like','%'.$request->nama_siswa.'%');
+            $list->where('calon_siswas.nama_siswa','like','%'.$request->nama_siswa.'%');
         }
 
         if($request->filled('no_hp')){
-            $list->where('no_hp_orang_tua','like','%'.$request->no_hp.'%');
+            $list->where('calon_siswas.no_hp_orang_tua','like','%'.$request->no_hp.'%');
         }
 
         if($request->filled('tanggal_pendaftaran')){
-            $list->where('formulir_pendaftaran.created_at','like', $request->tanggal_pendaftaran.'%');
+            $list->where('calon_siswas.formulir_pendaftaran.created_at','like', $request->tanggal_pendaftaran.'%');
         }
 
         return $list->get();

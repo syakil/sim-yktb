@@ -56,10 +56,10 @@
                                 <div class="col-md-4">
 
                                     <div class="mb-3">
-                                        <label for="jurusan" class="form-label">Jurusan</label>
+                                        <label for="jurusan" class="form-label">Jurusan {{$siswa->jurusan}}</label>
                                         <select class="form-control" id="jurusan">
                                             @foreach ($jurusan as $list)
-                                                <option value="{{$list->id}}" {{$siswa->jurusan_id == $list->id ? 'selected' : ''}}>{{$list->nama_jurusan}}</option>
+                                                <option value="{{$list->id}}" {{$siswa->jurusan == $list->id ? 'selected' : ''}}>{{$list->nama_jurusan}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -86,7 +86,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="nik" class="form-label">Nomor Induk Kependudukan (NIK) </label>
-                                    <input type="text" class="form-control" id="nik">
+                                    <input type="text" class="form-control" id="nik" value="{{$siswa->nik}}">
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
 
                                 <div class="mb-3">
                                     <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="tempat_lahir">
+                                    <input type="text" class="form-control" id="tempat_lahir" value="{{$siswa->tempat_lahir}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -120,19 +120,19 @@
                                 <div class="mb-3">
                                     <label for="agama" class="form-label">Agama</label>
                                     <select class="form-control" id="agama">
-                                        <option value="" selected disabled>Pilih Agama</option>
-                                        <option value="islam">Islam</option>
-                                        <option value="kristen">Kristen</option>
-                                        <option value="katolik">Katolik</option>
-                                        <option value="hindu">Hindu</option>
-                                        <option value="budha">Budha</option>
-                                        <option value="konghucu">Konghucu</option>
+                                        <option value="" disabled>Pilih Agama</option>
+                                        <option value="islam" {{$siswa->agama == 'islam' ? 'selected' : ''}}>Islam</option>
+                                        <option value="kristen" {{$siswa->agama == 'kristen' ? 'selected' : ''}}>Kristen</option>
+                                        <option value="katolik" {{$siswa->agama == 'katolik' ? 'selected' : ''}}>Katolik</option>
+                                        <option value="hindu" {{$siswa->agama == 'hindu' ? 'selected' : ''}}>Hindu</option>
+                                        <option value="budha" {{$siswa->agama == 'budha' ? 'selected' : ''}}>Budha</option>
+                                        <option value="konghucu" {{$siswa->agama == 'konghucu' ? 'selected' : ''}}>Konghucu</option>
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tinggin Badan (CM)</label>
-                                    <input type="number" class="form-control" id="tinggi_badan">
+                                    <input type="number" class="form-control" id="tinggi_badan" value="{{$siswa->tinggi_badan}}" >
                                 </div>
                             </div>
                         </div>
@@ -140,23 +140,23 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="alamat_kampung" class="form-label">Alamat (Kampung)</label>
-                                    <textarea name="alamat_kampung" cols="30" rows="3" class="form-control" id="alamat_kampung"></textarea>
+                                    <textarea name="alamat_kampung" cols="30" rows="3" class="form-control" id="alamat_kampung">{{$siswa->alamat_kampung}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="jumlah_saudara" class="form-label">Jumlah Saudara Kandung</label>
-                                    <input type="number" class="form-control" id="jumlah_saudara">
+                                    <input type="number" class="form-control" id="jumlah_saudara" value="{{$siswa->jumlah_saudara}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="alamat_kelurahan" class="form-label">Alamat (Kelurahan/Desa)</label>
-                                    <input type="text" class="form-control" id="alamat_kelurahan">
+                                    <input type="text" class="form-control" id="alamat_kelurahan" value="{{$siswa->alamat_kelurahan}}" >
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="alamat_kota" class="form-label">Alamat (Kota)</label>
-                                    <input type="text" class="form-control" id="alamat_kota">
+                                    <input type="text" class="form-control" id="alamat_kota" value="{{$siswa->alamat_kota}}">
                                 </div>
                             </div>
                         </div>
@@ -164,13 +164,13 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="jarak_rumah" class="form-label">Jarak Rumah Ke Sekolah (KM)</label>
-                                    <input type="number" class="form-control" id="jarak_rumah">
+                                    <input type="number" class="form-control" id="jarak_rumah" value="{{$siswa->jarak_rumah}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="waktu_tempuh" class="form-label">Waktu Tempuh Rumah Ke Sekolah (Menit)</label>
-                                    <input type="number" class="form-control" id="waktu_tempuh">
+                                    <input type="number" class="form-control" id="waktu_tempuh" value="{{$siswa->waktu_tempuh}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -188,19 +188,19 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="nama_ayah" class="form-label ">Nama Ayah</label>
-                                    <input type="text" class="form-control" id="nama_ayah">
+                                    <input type="text" class="form-control" id="nama_ayah" value="{{$siswa->nama_ayah}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="pendidikan_ayah" class="form-label ">Pendidikan Ayah</label>
-                                    <input type="text" class="form-control" id="pendidikan_ayah">
+                                    <input type="text" class="form-control" id="pendidikan_ayah" value="{{$siswa->pendidikan_ayah}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="pekerjaan_ayah" class="form-label ">Pekerjaan Ayah</label>
-                                    <input type="text" class="form-control" id="pekerjaan_ayah">
+                                    <input type="text" class="form-control" id="pekerjaan_ayah" value="{{$siswa->pekerjaan_ayah}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="penghasilan_ayah" class="form-label ">Penghasilan Ayah</label>
-                                    <input type="text" class="form-control" id="penghasilan_ayah">
+                                    <input type="text" class="form-control" id="penghasilan_ayah" value="{{ $siswa->penghasilan_ayah }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="no_hp_orang_tua" class="form-label ">No Handphone Wali/Orang Tua</label>
@@ -210,38 +210,38 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="nama_ibu" class="form-label ">Nama Ibu</label>
-                                    <input type="text" class="form-control" id="nama_ibu">
+                                    <input type="text" class="form-control" id="nama_ibu" value="{{$siswa->nama_ibu}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="pendidikan_ibu" class="form-label ">Pendidikan Ibu</label>
-                                    <input type="text" class="form-control" id="pendidikan_ibu">
+                                    <input type="text" class="form-control" id="pendidikan_ibu" value="{{$siswa->pendidikan_ibu}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="pekerjaan_ibu" class="form-label ">Pekerjaan Ibu</label>
-                                    <input type="text" class="form-control" id="pekerjaan_ibu">
+                                    <input type="text" class="form-control" id="pekerjaan_ibu" value="{{$siswa->pekerjaan_ibu}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="penghasilan_ibu" class="form-label ">Penghasilan Ibu</label>
-                                    <input type="text" class="form-control" id="penghasilan_ibu">
+                                    <input type="text" class="form-control" id="penghasilan_ibu" value="{{$siswa->penghasilan_ibu}}" >
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Nama Wali</label>
-                                    <input type="text" class="form-control" id="nama_wali">
+                                    <input type="text" class="form-control" id="nama_wali" value="{{$siswa->nama_wali}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Pendidikan Wali</label>
-                                    <input type="text" class="form-control" id="pendidikan_wali">
+                                    <input type="text" class="form-control" id="pendidikan_wali" value="{{$siswa->pendidikan_wali}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Pekerjaan Wali</label>
-                                    <input type="text" class="form-control" id="pekerjaan_wali">
+                                    <input type="text" class="form-control" id="pekerjaan_wali" value="{{$siswa->pekerjaan_wali}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label ">Penghasilan Wali</label>
-                                    <input type="text" class="form-control" id="penghasilan_wali">
+                                    <input type="text" class="form-control" id="penghasilan_wali" value="{{$siswa->penghasilan_wali}}">
                                 </div>
                             </div>
                         </div>
@@ -257,42 +257,43 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="nomor_ijazah" class="form-label ">Nomor Ijazah</label>
-                                    <input type="text" class="form-control" id="nomor_ijazah">
+                                    <input type="text" class="form-control" id="nomor_ijazah" value="{{$siswa->nomor_ijazah}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="ijazah" class="form-label ">Ijazah</label>
                                     <input type="file" class="form-control" id="ijazah">
+                                    @if($siswa->ijazah)
+                                    <div class="circle mt-3">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="window.open('{{asset('daftar_ulang').'/'.$siswa->no_pendaftaran.'/'.$siswa->ijazah}}','_blank')"><i class="mdi mdi-eye"></i> Lihat</button>
+                                    </div>
+                                    @endif
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="tahun_lulus" class="form-label ">Tahun Lulus</label>
-                                    <select id="tahun_lulus" name="tahun_lulus" class="form-control">
-                                        <option value="">Pilih Tahun</option>
-                                        <script>
-                                          const startYear = new Date().getFullYear() - (21-18);
-                                          const endYear = new Date().getFullYear();
-                                          for (let year = startYear; year <= endYear; year++) {
-                                            document.write('<option value="' + year + '">' + year + '</option>');
-                                          }
-                                        </script>
-                                      </select>
+                                    <input type="number" class="form-control" id="tahun_lulus" value="{{$siswa->tahun_lulus}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nomor_skhun" class="form-label ">Nomor SKHUN</label>
-                                    <input type="text" class="form-control" id="nomor_skhun">
+                                    <input type="text" class="form-control" id="nomor_skhun" value="{{$siswa->nomor_skhun}}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="skhun" class="form-label ">SKHUN</label>
                                     <input type="file" class="form-control" id="skhun">
+                                    @if($siswa->skhun)
+                                    <div class="circle mt-3">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="window.open('{{asset('daftar_ulang').'/'.$siswa->no_pendaftaran.'/'.$siswa->skhun}}','_blank')"><i class="mdi mdi-eye"></i> Lihat</button>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="alamat_sekolah" class="form-label ">Alamat Sekolah</label>
-                                    <input type="text" class="form-control" id="alamat_sekolah">
+                                    <input type="text" class="form-control" id="alamat_sekolah" value="{{$siswa->alamat_sekolah}}">
                                 </div>
                             </div>
                         </div>
@@ -304,31 +305,31 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="jenis_kejuaraan" class="form-label ">Jenis Kejuaran/Perlombaan</label>
-                                    <input type="text" class="form-control" id="jenis_kejuaraan">
+                                    <input type="text" class="form-control" id="jenis_kejuaraan" value="{{$siswa->jenis_kejuaraan}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama_beasiswa" class="form-label ">Nama Beasiswa</label>
-                                    <input type="text" class="form-control" id="nama_beasiswa">
+                                    <input type="text" class="form-control" id="nama_beasiswa" value="{{$siswa->nama_beasiswa}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="peringkat_kejuaraan" class="form-label ">Juara Ke - </label>
-                                    <input type="text" class="form-control" id="peringkat_kejuaraan">
+                                    <input type="text" class="form-control" id="peringkat_kejuaraan" value="{{$siswa->peringkat_kejuaraan}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="penyelengara_beasiswa" class="form-label ">Penyelanggara Beasiswa</label>
-                                    <input type="text" class="form-control" id="penyelengara_beasiswa">
+                                    <input type="text" class="form-control" id="penyelengara_beasiswa" value="{{$siswa->penyelengara_beasiswa}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="tingkat_kejuaraan" class="form-label ">Tingkat (Kec / Kota /Prov)</label>
-                                    <input type="text" class="form-control" id="tingkat_kejuaraan">
+                                    <input type="text" class="form-control" id="tingkat_kejuaraan" value="{{$siswa->tingkat_kejuaraan}}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="tahun_beasiswa" class="form-label ">Tahun Penerimaan Beasiswa</label>
-                                    <input type="number" class="form-control" id="tahun_beasiswa">
+                                    <input type="number" class="form-control" id="tahun_beasiswa" value="{{$siswa->tahun_beasiswa}}">
                                 </div>
                             </div>
                         </div>
@@ -336,19 +337,28 @@
                         <h4>
                             Data Lainnya
                         </h4>
+
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="pas_foto" class="form-label ">Pas Foto (Background : Merah)</label>
-                                    <div id="fileInputContainer">
-                                        <input type="file" class="form-control" id="pas_foto" data-default="{{ isset($siswa->pas_foto) ? asset('daftar_ulang').'/'.$siswa->no_pendaftaran.'/'.$siswa->pas_foto : '' }}" onchange="previewFile()">
+                                    <input type="file" class="form-control" id="pas_foto">
+                                    @if($siswa->pas_foto)
+                                    <div class="circle mt-3">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="window.open('{{asset('daftar_ulang').'/'.$siswa->no_pendaftaran.'/'.$siswa->pas_foto}}','_blank')"><i class="mdi mdi-eye"></i> Lihat</button>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="kartu_keluarga" class="form-label ">Kartu Keluarga</label>
                                     <input type="file" class="form-control" id="kartu_keluarga">
+                                    @if($siswa->kartu_keluarga)
+                                    <div class="circle mt-3">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="window.open('{{asset('daftar_ulang').'/'.$siswa->no_pendaftaran.'/'.$siswa->kartu_keluarga}}','_blank')"><i class="mdi mdi-eye"></i> Lihat</button>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -374,37 +384,19 @@
 @section('script')
 <script>
 
-function previewFile() {
-    var previewContainer = document.getElementById('previewContainer');
-    var fileInput = document.getElementById('pas_foto');
-    var file = fileInput.files[0];
+    $('#penghasilan_ayah').attr('value', formatUang($('#penghasilan_ayah').val()));
+    $('#penghasilan_ibu').attr('value', formatUang($('#penghasilan_ibu').val()));
+    $('#penghasilan_wali').attr('value', formatUang($('#penghasilan_wali').val()));
+    $('#penghasilan_ayah,#penghasilan_ibu,#penghasilan_wali').on('keyup', function() {
+        let value = $(this).val();
+        value = value.replace(/\D/g, ''); // Hapus semua karakter non-digit
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Tambahkan titik sebagai separator
+        $(this).val(value);
+    });
 
-    if (file) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            var preview = document.createElement('img');
-            preview.src = reader.result;
-            preview.style.maxWidth = '100%';
-            preview.style.maxHeight = '200px';
-            previewContainer.innerHTML = '';
-            previewContainer.appendChild(preview);
-        }
-        reader.readAsDataURL(file);
+    function formatUang(angka) {
+        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    var defaultData = document.getElementById('pas_foto').getAttribute('data-default');
-    if (defaultData) {
-        var previewContainer = document.createElement('div');
-        previewContainer.id = 'previewContainer';
-        document.getElementById('fileInputContainer').appendChild(previewContainer);
-        previewFile(); // Preview default file
-    } else {
-        var fileInput = document.getElementById('pas_foto');
-        fileInput.style.display = 'block'; // Show file input
-    }
-});
 
     $('#no_hp_siswa,#no_hp_orang_tua').keydown(function(e) {
         // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
@@ -516,7 +508,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let inputIDs = [
                     'sekolah_yang_dituju', 'jurusan', 'nisn', 'nik', 'nama_siswa', 'tempat_lahir', 'jenis_kelamin', 'tanggal_lahir', 'agama', 'tinggi_badan',
                     'alamat_kampung', 'jumlah_saudara', 'alamat_kelurahan', 'alamat_kota', 'jarak_rumah', 'waktu_tempuh', 'no_hp_siswa','nama_sekolah', 'tahun_lulus',
-                    'alamat_sekolah','pas_foto', 'kartu_keluarga'
+                    'alamat_sekolah'
                 ];
 
         let isValid = validateForm(inputIDs);
@@ -540,6 +532,24 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }else{
             $('#nik').removeClass('is-invalid');
+        }
+
+        var penghasilanAyah = $('#penghasilan_ayah').val();
+        if($('#penghasilan_ayah').val()){
+            penghasilanAyah = penghasilanAyah.replace(/\D/g, '');
+            penghasilanAyah = parseInt(penghasilanAyah, 10);
+        }
+
+        var penghasilanIbu = $('#penghasilan_ibu').val();
+        if($('#penghasilan_ibu').val()){
+            penghasilanIbu = penghasilanIbu.replace(/\D/g, '');
+            penghasilanIbu = parseInt(penghasilanIbu, 10);
+        }
+
+        var penghasilanWali = $('#penghasilan_wali').val();
+        if($('#penghasilan_wali').val()){
+            penghasilanWali = penghasilanWali.replace(/\D/g, '');
+            penghasilanWali = parseInt(penghasilanWali, 10);
         }
 
 
@@ -566,16 +576,16 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append('nama_ayah', $('#nama_ayah').val());
         formData.append('pendidikan_ayah', $('#pendidikan_ayah').val());
         formData.append('pekerjaan_ayah', $('#pekerjaan_ayah').val());
-        formData.append('penghasilan_ayah', $('#penghasilan_ayah').val());
+        formData.append('penghasilan_ayah', penghasilanAyah);
         formData.append('no_hp_orang_tua', $('#no_hp_orang_tua').val());
         formData.append('nama_ibu', $('#nama_ibu').val());
         formData.append('pekerjaan_ibu', $('#pekerjaan_ibu').val());
-        formData.append('penghasilan_ibu', $('#penghasilan_ibu').val());
+        formData.append('penghasilan_ibu', penghasilanIbu);
         formData.append('pendidikan_ibu', $('#pendidikan_ibu').val());
         formData.append('nama_wali', $('#nama_wali').val());
         formData.append('pekerjaan_wali', $('#pekerjaan_wali').val());
         formData.append('pendidikan_wali', $('#pendidikan_wali').val());
-        formData.append('penghasilan_wali', $('#penghasilan_wali').val());
+        formData.append('penghasilan_wali', penghasilanWali);
         formData.append('nama_sekolah', $('#nama_sekolah').val());
         formData.append('nomor_ijazah', $('#nomor_ijazah').val());
         formData.append('ijazah', $('#ijazah')[0].files[0]);
@@ -593,7 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append('kartu_keluarga', $('#kartu_keluarga')[0].files[0]);
 
         $.ajax({
-            url: '{{ route('daftar-ulang.store') }}',
+            url: '{{ route('validasi-daftar-ulang.store') }}',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -604,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     title: 'Berhasil',
                     text: response.message,
                 }).then(function() {
-                    window.location.href = '{{ route('dashboard-siswa.index') }}';
+                    window.location.href = '{{ route('validasi-daftar-ulang.index') }}';
                 });
             },
             error: function(xhr) {

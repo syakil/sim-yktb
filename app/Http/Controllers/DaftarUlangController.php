@@ -9,6 +9,7 @@ use App\Models\Sekolah;
 use App\Repositories\DaftarUlangRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class DaftarUlangController extends Controller
 {
@@ -27,6 +28,10 @@ class DaftarUlangController extends Controller
         ->leftJoin('sekolahs', 'formulir_pendaftaran.sekolah_id', '=', 'sekolahs.id')
         ->leftJoin('jurusans', 'formulir_pendaftaran.jurusan_id', '=', 'jurusans.id')
         ->first();
+        $wilayah = DB::table('wilayah')
+                ->where('kode', 'like', '32%')
+                ->whereRaw('LENGTH(kode) = 5')
+                ->get();
         $sekolah = Sekolah::all();
         $jurusan = Jurusan::all();
         return view('siswa.daftar_ulang.index',compact('siswa','sekolah','jurusan'));

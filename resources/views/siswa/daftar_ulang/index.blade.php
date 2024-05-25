@@ -371,6 +371,12 @@
 
 @section('script')
 <script>
+    $('#penghasilan_ayah,#penghasilan_ibu,#penghasilan_wali').on('keyup', function() {
+        let value = $(this).val();
+        value = value.replace(/\D/g, ''); // Hapus semua karakter non-digit
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Tambahkan titik sebagai separator
+        $(this).val(value);
+    });
 
     $('#no_hp_siswa,#no_hp_orang_tua').keydown(function(e) {
         // Perbolehkan tombol backspace, tab, escape, enter, dan arrow keys
@@ -508,6 +514,23 @@
             $('#nik').removeClass('is-invalid');
         }
 
+        var penghasilanAyah = $('#penghasilan_ayah').val();
+        if($('#penghasilan_ayah').val()){
+            penghasilanAyah = penghasilanAyah.replace(/\D/g, '');
+            penghasilanAyah = parseInt(penghasilanAyah, 10);
+        }
+
+        var penghasilanIbu = $('#penghasilan_ibu').val();
+        if($('#penghasilan_ibu').val()){
+            penghasilanIbu = penghasilanIbu.replace(/\D/g, '');
+            penghasilanIbu = parseInt(penghasilanIbu, 10);
+        }
+
+        var penghasilanWali = $('#penghasilan_wali').val();
+        if($('#penghasilan_wali').val()){
+            penghasilanWali = penghasilanWali.replace(/\D/g, '');
+            penghasilanWali = parseInt(penghasilanWali, 10);
+        }
 
         let formData = new FormData();
         formData.append('_token', '{{ csrf_token() }}');
@@ -532,16 +555,16 @@
         formData.append('nama_ayah', $('#nama_ayah').val());
         formData.append('pendidikan_ayah', $('#pendidikan_ayah').val());
         formData.append('pekerjaan_ayah', $('#pekerjaan_ayah').val());
-        formData.append('penghasilan_ayah', $('#penghasilan_ayah').val());
+        formData.append('penghasilan_ayah', penghasilanAyah);
         formData.append('no_hp_orang_tua', $('#no_hp_orang_tua').val());
         formData.append('nama_ibu', $('#nama_ibu').val());
         formData.append('pekerjaan_ibu', $('#pekerjaan_ibu').val());
-        formData.append('penghasilan_ibu', $('#penghasilan_ibu').val());
+        formData.append('penghasilan_ibu', penghasilanIbu);
         formData.append('pendidikan_ibu', $('#pendidikan_ibu').val());
         formData.append('nama_wali', $('#nama_wali').val());
         formData.append('pekerjaan_wali', $('#pekerjaan_wali').val());
         formData.append('pendidikan_wali', $('#pendidikan_wali').val());
-        formData.append('penghasilan_wali', $('#penghasilan_wali').val());
+        formData.append('penghasilan_wali', penghasilanWali);
         formData.append('nama_sekolah', $('#nama_sekolah').val());
         formData.append('nomor_ijazah', $('#nomor_ijazah').val());
         formData.append('ijazah', $('#ijazah')[0].files[0]);
