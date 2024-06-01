@@ -39,19 +39,19 @@ class ValidasiDaftarUlangController extends Controller
             if($list->status_data_siswa){
                 $row[] = '<span class="badge bg-success">Sudah Verifikasi</span>';
             }else{
-                $button = '
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                        <span class="sr-only"><i class="ri-settings-3-line"></i></span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" target="_blank" href="'.route("validasi-daftar-ulang.detail",$list->no_pendaftaran).'">Verifikasi</a>
-                    </div>
-                </div>
-                ';
-                $row[] = $button;
-
+                $row[] = '<span class="badge bg-danger">Belum Verifikasi</span>';
             }
+            $button = '
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <span class="sr-only"><i class="ri-settings-3-line"></i></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" target="_blank" href="'.route("validasi-daftar-ulang.detail",$list->no_pendaftaran).'">Verifikasi</a>
+                </div>
+            </div>
+            ';
+            $row[] = $button;
             $data[] =$row;
 
         }

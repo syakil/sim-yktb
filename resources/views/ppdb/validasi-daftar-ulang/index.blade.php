@@ -25,6 +25,7 @@
                                 <th style="width: 150px;">Jurusan</th>
                                 <th>Nama Siswa</th>
                                 <th>No Handphone</th>
+                                <th>Status</th>
                                 <th>
                                 </th>
                             </tr>
@@ -57,6 +58,7 @@
                                 <th>
                                     <input type="text" id="no_hp" onkeyup="filter()" class="form-control" autocomplete="off">
                                 </th>
+                                <th></th>
                                 <th>
                                     <button class="btn btn-sm btn-danger" onclick="resetFilter()">Reset</button>
 
