@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/validasi-daftar-ulang/getData',[\App\Http\Controllers\ValidasiDaftarUlangController::class,'getData'])->name('validasi-daftar-ulang.data');
     Route::get('/validasi-daftar-ulang/detail/{noPendaftaran}',[\App\Http\Controllers\ValidasiDaftarUlangController::class,'detail'])->name('validasi-daftar-ulang.detail');
 
+    Route::get('/dsp',[\App\Http\Controllers\DspController::class,'index'])->name('dsp.index');
 });
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {

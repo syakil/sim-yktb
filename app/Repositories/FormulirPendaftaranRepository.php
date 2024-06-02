@@ -98,6 +98,43 @@ class FormulirPendaftaranRepository extends BaseRepository
 
     }
 
+
+    public static function getListDsp($request){
+
+        $list = CalonSiswa::select('calon_siswas.*','data_siswas.nisn as status_data_siswa','sekolahs.nama_sekolah','jurusans.nama_jurusan')
+        ->leftJoin('data_siswas','data_siswas.nisn','=','calon_siswas.nisn')
+        ->leftJoin('sekolahs','calon_siswas.sekolah_yang_dituju','=','sekolahs.id')
+        ->leftJoin('jurusans','calon_siswas.jurusan','=','jurusans.id')
+        ->orderBy('no_pendaftaran','asc');
+
+        if($request->filled('no_pendaftaran')){
+            $list->where('calon_siswas.no_pendaftaran','like','%'.$request->no_pendaftaran.'%');
+        }
+
+        if($request->filled('sekolah_yang_dituju')){
+            $list->where('calon_siswas.sekolah_yang_dituju','like','%'.$request->sekolah_yang_dituju.'%');
+        }
+
+        if($request->filled('jurusan')){
+            $list->where('jurusans.id','like','%'.$request->jurusan.'%');
+        }
+
+        if($request->filled('nama_siswa')){
+            $list->where('calon_siswas.nama_siswa','like','%'.$request->nama_siswa.'%');
+        }
+
+        if($request->filled('no_hp')){
+            $list->where('calon_siswas.no_hp_orang_tua','like','%'.$request->no_hp.'%');
+        }
+
+        if($request->filled('tanggal_pendaftaran')){
+            $list->where('calon_siswas.formulir_pendaftaran.created_at','like', $request->tanggal_pendaftaran.'%');
+        }
+
+        return $list->get();
+
+    }
+
     public static function store($request)
     {
         try {

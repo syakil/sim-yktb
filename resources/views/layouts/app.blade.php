@@ -133,6 +133,8 @@
 							<ul class="cr-sb-drop condense">
 								<li><a href="{{route('formulir-pendaftaran.index')}}" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i></i>Formulir Pendaftaran</a></li>
+                                <li><a href="{{route('dsp.index')}}" class="cr-page-link drop"><i
+                                            class="ri-checkbox-blank-circle-line"></i>Pembayaran DSP</a></li>
 								<li><a href="{{route('validasi-daftar-ulang.index')}}" class="cr-page-link drop"><i
 											class="ri-checkbox-blank-circle-line"></i>Daftar Ulang</a></li>
 							</ul>
