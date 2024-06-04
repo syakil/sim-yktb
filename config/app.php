@@ -171,7 +171,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
-
+        Riskihajar\Terbilang\TerbilangServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -189,6 +189,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+        'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
     ])->toArray(),
 
 ];

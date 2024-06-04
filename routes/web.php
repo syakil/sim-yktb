@@ -39,7 +39,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/dsp',[\App\Http\Controllers\DspController::class,'index'])->name('dsp.index');
     Route::get('/dsp/getData',[\App\Http\Controllers\DspController::class,'getData'])->name('dsp.data');
     Route::get('/dsp/detail/{noPendaftaran}',[\App\Http\Controllers\DspController::class,'getDetail'])->name('dsp.detail');
+    Route::get('/dsp/cetakBukti/{noPendaftaran}',[\App\Http\Controllers\DspController::class,'cetakBukti'])->name('dsp.cetakBukti');
     Route::post('/dsp/store',[\App\Http\Controllers\DspController::class,'store'])->name('dsp.store');
+
 });
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {

@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\CalonSiswa;
 use App\Models\DanaSumbanganPendidikan;
+use App\Models\FormulirPendaftaran;
 use Illuminate\Http\Request;
 use App\Models\Sekolah;
 use App\Models\Jurusan;
 use App\Repositories\FormulirPendaftaranRepository;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Riskihajar\Terbilang\Facades\Terbilang;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Str;
 
 class DspController extends Controller
 {
@@ -59,7 +65,7 @@ class DspController extends Controller
                         <span class="sr-only"><i class="ri-settings-3-line"></i></span>
                     </button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-item">Cetak Bukti Bayar</button>
+                        <a target="_blank" href="'.route("dsp.cetakBukti",$list->no_pendaftaran).'" class="dropdown-item">Cetak Bukti Bayar</a>
                     </div>
                 </div>
                 ';
@@ -99,4 +105,51 @@ class DspController extends Controller
 
         return response()->json(['status' => 'success','message' => 'Berhasil Menyimpan Data']);
     }
+
+    public function cetakBukti($noPendaftaran) {
+        $siswa = FormulirPendaftaran::select('formulir_pendaftaran.*','sekolahs.nama_sekolah','jurusans.nama_jurusan','dana_sumbangan_pendidikan.nominal_yang_disetor')
+        ->where('formulir_pendaftaran.no_pendaftaran',$noPendaftaran)
+        ->leftJoin('sekolahs','sekolahs.id','formulir_pendaftaran.sekolah_id')
+        ->leftJoin('jurusans','jurusans.id','formulir_pendaftaran.jurusan_id')
+        ->leftJoin('dana_sumbangan_pendidikan','dana_sumbangan_pendidikan.no_pendaftaran','formulir_pendaftaran.no_pendaftaran')
+        ->first();
+        Carbon::setLocale('id');
+        $password =  Carbon::parse($siswa->tanggal_lahir)->format('dmY');
+
+
+        $tanggalDaftar = Carbon::parse($siswa->created_at)->translatedFormat('d M Y');
+        $tanggalLahir = Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d M Y');
+        $tanggalDaftarUlang = Carbon::parse($siswa->created_at);
+        $date = $tanggalDaftarUlang->copy()->addDay();
+
+        $daysToAdd = 7;
+
+        while ($daysToAdd > 0) {
+            if (!$date->isWeekend()) {
+                $daysToAdd--;
+            }
+            $date->addDay(); // Move to the next day
+        }
+        $tahunIni = date('Y');
+        $tahunDepan = $tahunIni + 1;
+        $url = config('app.url').'/login-siswa';
+
+        $tanggalDaftarUlang = $date->translatedFormat('d M Y');
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($url));
+        $terbilang = ucwords(Terbilang::make($siswa->nominal_yang_disetor) . ' Rupiah');
+        $nominal = 'RP '.number_format($siswa->nominal_yang_disetor,0,',','.');
+        $data= [
+            'siswa' => $siswa,
+            'tanggal' => $tanggalDaftar,
+            'password' => $password,
+            'tanggal_lahir' => $tanggalLahir,
+            'tanggal_daftar_ulang' => $tanggalDaftarUlang,
+            'tahunAjaran' => $tahunIni.'/'.$tahunDepan,
+            'nominal' => $nominal,
+            'terbilang' => $terbilang,
+        ];
+        $pdf =Pdf::loadView('ppdb.dsp.bukti-bayar',['data'=>$data]);
+        return $pdf->stream('blangko.pdf');
+    }
+
 }
