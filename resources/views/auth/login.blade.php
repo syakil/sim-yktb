@@ -10,10 +10,9 @@
 	<meta name="description" content="Carrot - Admin.">
 	<meta name="author" content="ashishmaraviya">
 
-	<title>Carrot - Admin.</title>
+	<title>SIM - YKTB.</title>
 
 	<!-- App favicon -->
-	<link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
 
 	<!-- Icon CSS -->
 	<link href="assets/css/vendor/materialdesignicons.min.css" rel="stylesheet">
@@ -47,8 +46,10 @@
                                         <form method="POST" class="login-form" action="{{ route('login') }}">
                                             @csrf
 											<div class="imgcontainer">
-												<a href="index.html"><img src="assets/img/logo/full-logo.png" alt="logo" class="logo"></a>
-											</div>
+                                                <h4>
+                                                    SIM - YKTB
+                                                </h4>
+                                            </div>
 											<div class="input-control">
                                                 @if (session('error'))
                                                     <div class="alert alert-danger">

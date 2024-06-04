@@ -11,15 +11,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="admin, dashboard, ecommerce, panel" />
-	<meta name="description" content="Carrot - Admin.">
-	<meta name="author" content="ashishmaraviya">
 
-	<title>Carrot - Admin.</title>
+	<title>SIM - YKTB</title>
 
 	<!-- App favicon -->
-	<link rel="shortcut icon" href="assets/img/favicon/favicon.ico">
 
 	<!-- Icon CSS -->
 	<link href="{{asset('assets/css/vendor/materialdesignicons.min.css')}}" rel="stylesheet">
@@ -108,9 +103,9 @@
 		<div class="cr-sidebar-overlay"></div>
 		<div class="cr-sidebar" data-mode="light">
 			<div class="cr-sb-logo">
-				<a href="index.html" class="sb-full"><img src="{{asset('assets/img/logo/full-logo.png')}}" alt="logo"></a>
-				<a href="index.html" class="sb-collapse"><img src="{{asset('assets/img/logo/collapse-logo.png')}}" alt="logo"></a>
-			</div>
+                <h4 class="sb-full">SIM - YKTB</h4>
+                <h4 class="sb-collapse">SIM</h4>
+            </div>
 			<div class="cr-sb-wrapper">
 				<div class="cr-sb-content">
 					<ul class="cr-sb-list">

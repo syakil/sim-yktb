@@ -101,8 +101,8 @@ class FormulirPendaftaranRepository extends BaseRepository
 
     public static function getListDsp($request){
 
-        $list = CalonSiswa::select('calon_siswas.*','data_siswas.nisn as status_data_siswa','sekolahs.nama_sekolah','jurusans.nama_jurusan')
-        ->leftJoin('data_siswas','data_siswas.nisn','=','calon_siswas.nisn')
+        $list = CalonSiswa::select('calon_siswas.*','sekolahs.nama_sekolah','jurusans.nama_jurusan','dana_sumbangan_pendidikan.no_pendaftaran as status_data_siswa')
+        ->leftJoin('dana_sumbangan_pendidikan','dana_sumbangan_pendidikan.no_pendaftaran','=','calon_siswas.no_pendaftaran')
         ->leftJoin('sekolahs','calon_siswas.sekolah_yang_dituju','=','sekolahs.id')
         ->leftJoin('jurusans','calon_siswas.jurusan','=','jurusans.id')
         ->orderBy('no_pendaftaran','asc');
