@@ -114,7 +114,7 @@
 								<i class="ri-dashboard-3-line"></i><span class="condense">Dashboard<i
 										class="drop-arrow ri-arrow-down-s-line"></i></span></a>
 							<ul class="cr-sb-drop condense">
-								<li><a href="index.html" class="cr-page-link drop"><i
+								<li><a href="{{route('home')}}" class="cr-page-link drop"><i
 									class="ri-checkbox-blank-circle-line"></i>Dashboard</a></li>
 
 							</ul>
