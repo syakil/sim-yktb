@@ -11,6 +11,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
 
 	<title>YKTB - Siswa</title>
 
@@ -68,7 +69,7 @@
 						<div class="cr-right-tool cr-user-drop">
 							<div class="cr-hover-drop">
 								<div class="cr-hover-tool">
-									<img class="user" src="assets/img/user/1.jpg" alt="user">
+									<img class="user" src="assets/img/user/3135715.png" alt="user">
 								</div>
 								<div class="cr-hover-drop-panel right">
 									<div class="details">
