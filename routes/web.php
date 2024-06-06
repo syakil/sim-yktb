@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +24,12 @@ Route::post('/logout-siswa',[\App\Http\Controllers\Auth\LoginSiswaController::cl
 
 Auth::routes();
 
-Route::middleware(['auth', 'role:superadmin'])->group(function () {
+Route::middleware(['auth', 'role:superadmin,yayasan'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/pie-chart-data', [HomeController::class, 'getChartData'])->name('home.chart');
+    Route::get('/home/trend-chart-data', [HomeController::class, 'getTrenPendaftaranHarian'])->name('home.trend');
+    Route::get('/home/trend-chart-jurusan', [HomeController::class, 'getChartBedasarkanJurusan'])->name('home.chart-jurusan');
+
     Route::get('/formulir-pendaftaran',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'index'])->name('formulir-pendaftaran.index');
     Route::get('/formulir-pendaftaran/generate',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'generate'])->name('formulir-pendaftaran.generate');
     Route::get('/formulir-pendaftaran/getData',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'getData'])->name('formulir-pendaftaran.data');

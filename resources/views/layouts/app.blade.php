@@ -119,6 +119,7 @@
 
 							</ul>
 						</li>
+                        @if(Auth::user()->role == 'superadmin')
 						<li class="cr-sb-item-separator"></li>
 						<li class="cr-sb-title condense">Kesisawaan</li>
 						<li class="cr-sb-item sb-drop-item">
@@ -134,7 +135,7 @@
 											class="ri-checkbox-blank-circle-line"></i>Daftar Ulang</a></li>
 							</ul>
 						</li>
-
+                        @endif
 					</ul>
 				</div>
 			</div>
@@ -163,9 +164,6 @@
 	<script src="{{asset('assets/js/vendor/jquery-3.6.4.min.js')}}"></script>
 	<script src="{{asset('assets/js/vendor/simplebar.min.js')}}"></script>
 	<script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}"></script>
-	<script src="{{asset('assets/js/vendor/apexcharts.min.js')}}"></script>
-	<script src="{{asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js')}}"></script>
-	<script src="{{asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js')}}"></script>
 	<script src="{{asset('assets/js/vendor/owl.carousel.min.js')}}"></script>
 	<!-- Data Tables -->
 	<script src='{{asset('assets/js/vendor/jquery.datatables.min.js')}}'></script>
@@ -176,7 +174,6 @@
 	<!-- Date Range Picker -->
 	<script src="{{asset('assets/js/vendor/moment.min.js')}}"></script>
 	<script src="{{asset('assets/js/vendor/daterangepicker.js')}}"></script>
-	<script src="{{asset('assets/js/vendor/date-range.js')}}"></script>
 	<script src="{{asset('assets/js/vendor/select2.min.js')}}"></script>
     <script src="{{asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
