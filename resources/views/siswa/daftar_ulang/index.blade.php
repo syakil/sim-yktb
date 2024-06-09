@@ -671,10 +671,11 @@
                 data: {sekolah_id:sekolahId},
                 success: function(response){
                     $('#jurusan').empty();
-                    $('#jurusan').append('<option value="">Pilih Jurusan</option>');
+                    $('#jurusan').append('<option disabled selected value="">Pilih Jurusan</option>');
                     $.each(response.data, function(key, value){
                         $('#jurusan').append('<option value="'+ value.id +'">'+ value.nama_jurusan +'</option>');
                     });
+                    $('#deskripsi').val('');
                 }
             });
         } else {

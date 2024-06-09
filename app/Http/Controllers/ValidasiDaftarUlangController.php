@@ -70,7 +70,7 @@ class ValidasiDaftarUlangController extends Controller
         ->first();
 
         $sekolah = Sekolah::all();
-        $jurusan = Jurusan::all();
+        $jurusan = Jurusan::where('sekolah_id', $siswa->sekolah_yang_dituju)->get();
         return view('ppdb.validasi-daftar-ulang.detail',compact('siswa','sekolah','jurusan'));
     }
 
