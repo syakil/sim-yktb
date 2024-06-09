@@ -33,7 +33,7 @@ class DaftarUlangController extends Controller
                 ->whereRaw('LENGTH(kode) = 5')
                 ->get();
         $sekolah = Sekolah::all();
-        $jurusan = Jurusan::all();
+        $jurusan = Jurusan::where('sekolah_id', $siswa->sekolah_id)->get();
         return view('siswa.daftar_ulang.index',compact('siswa','sekolah','jurusan'));
     }
 

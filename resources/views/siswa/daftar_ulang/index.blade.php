@@ -661,5 +661,27 @@
         return isValid;
     }
 
+    $('#sekolah_yang_dituju').change(function(){
+        var sekolahId = $(this).val();
+        if(sekolahId){
+            $.ajax({
+                url: "{{route('jurusan.getListJurusan')}}",
+                type: 'GET',
+                dataType: 'json',
+                data: {sekolah_id:sekolahId},
+                success: function(response){
+                    $('#jurusan').empty();
+                    $('#jurusan').append('<option value="">Pilih Jurusan</option>');
+                    $.each(response.data, function(key, value){
+                        $('#jurusan').append('<option value="'+ value.id +'">'+ value.nama_jurusan +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#jurusan').empty();
+            $('#jurusan').append('<option value="">Pilih Jurusan</option>');
+        }
+    });
+
 </script>
 @endsection
