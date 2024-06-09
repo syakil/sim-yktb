@@ -222,5 +222,27 @@
         $('#create_nisn,#create_no_hp_siswa, #create_jenis_kelamin,#create_asal_sekolah,#create_alamat,#create_nama_siswa,#create_tgl_lahir,#create_no_hp_orang_tua,#create_sekolah,#create_jurusan ').val('');
     });
 
+    $('#create_sekolah').change(function(){
+        var sekolahId = $(this).val();
+        if(sekolahId){
+            $.ajax({
+                url: "{{route('jurusan.getListJurusan')}}",
+                type: 'GET',
+                dataType: 'json',
+                data: {sekolah_id:sekolahId},
+                success: function(response){
+                    $('#create_jurusan').empty();
+                    $('#create_jurusan').append('<option value="">Pilih Jurusan</option>');
+                    $.each(response.data, function(key, value){
+                        $('#create_jurusan').append('<option value="'+ value.id +'">'+ value.nama_jurusan +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#create_jurusan').empty();
+            $('#create_jurusan').append('<option value="">Pilih Jurusan</option>');
+        }
+    });
+
 </script>
 @endsection

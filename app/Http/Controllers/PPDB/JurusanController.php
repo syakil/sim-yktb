@@ -15,4 +15,11 @@ class JurusanController extends Controller
             'status' => true,
             'data' => $jurusan]);
     }
+
+    public function getListJurusan(Request $request){
+        $jurusan = Jurusan::where('sekolah_id', $request->sekolah_id)->get();
+        return response()->json([
+            'status' => true,
+            'data' => $jurusan]);
+    }
 }

@@ -129,7 +129,7 @@
 
 @section('script')
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script>
     function fetchChartData(filter) {
         $.ajax({
@@ -139,11 +139,27 @@
             success: function(response) {
                 Highcharts.chart('chart-jurusan', {
                     chart: {
-                        type: 'pie'
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45,
+                            beta: 0
+                        }
                     },
                     title: {
                         text: 'Pendaftaran Berdasarkan Jurusan'
                     },
+                    plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                depth: 35,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}'
+                                }
+                            }
+                        },
                     series: [{
                         name: 'Pendaftar',
                         colorByPoint: true,
@@ -222,10 +238,26 @@
             success: function(response) {
                 Highcharts.chart('chart-sekolah', {
                     chart: {
-                        type: 'pie'
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45,
+                            beta: 0
+                        }
                     },
                     title: {
                         text: 'Pendaftaran Berdasarkan Jurusan'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            depth: 35,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}'
+                            }
+                        }
                     },
                     series: [{
                         name: 'Pendaftar',

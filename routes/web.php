@@ -56,3 +56,4 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 });
 
 Route::get('/jurusan',[\App\Http\Controllers\PPDB\JurusanController::class,'getJurusan'])->name('jurusan.getJurusan');
+Route::get('/jurusan-list',[\App\Http\Controllers\PPDB\JurusanController::class,'getListJurusan'])->name('jurusan.getListJurusan');

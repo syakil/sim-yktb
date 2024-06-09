@@ -65,9 +65,9 @@
                         <label for="jurusan" style="color: black">Jurusan</label>
                         <select class="form-control" id="create_jurusan">
                             <option value="" selected disabled>Pilih Jurusan</option>
-                            @foreach($jurusan as $item)
+                            {{-- @foreach($jurusan as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_jurusan }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
                 </div>
