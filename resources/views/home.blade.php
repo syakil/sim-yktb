@@ -328,7 +328,7 @@
                         }
                     },
                     title: {
-                        text: 'Pendaftaran Berdasarkan Jurusan'
+                        text: 'Persentas Pendaftar Berdasarkan Sekolah'
                     },
                     plotOptions: {
                         pie: {
