@@ -130,4 +130,41 @@ class HomeController extends Controller
 
         return response()->json($data);
     }
+
+    public function getChartKuota(Request $request)
+    {
+        $jurusan = $request->jurusan;
+        $sekolah = $request->sekolah;
+
+        $kuota = Jurusan::select(DB::raw('sum(kuota) as kuota'));
+        if($jurusan != 'all') {
+            $kuota->where('id', $jurusan);
+        }
+        if($sekolah != 'all') {
+            $kuota->where('sekolah_id', $sekolah);
+        }
+        $kuota = $kuota->first();
+
+
+        $result = FormulirPendaftaran::select(DB::raw('COUNT(no_pendaftaran) as count'));
+        if ($jurusan != 'all') {
+            $result->where('jurusan_id', $jurusan);
+        }
+        if ($sekolah != 'all') {
+            $result->where('sekolah_id', $sekolah);
+        }
+        $result = $result->first();
+
+        $labels = ['Sisa Kuota', 'Terdaftar'];
+        $series = [(int)$kuota->kuota - $result->count, $result->count];
+
+
+        $data = [
+            'labels' => $labels,
+            'series' => $series
+        ];
+
+
+        return response()->json($data);
+    }
 }

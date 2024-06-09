@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:superadmin,yayasan'])->group(function () {
     Route::get('/home/pie-chart-data', [HomeController::class, 'getChartData'])->name('home.chart');
     Route::get('/home/trend-chart-data', [HomeController::class, 'getTrenPendaftaranHarian'])->name('home.trend');
     Route::get('/home/trend-chart-jurusan', [HomeController::class, 'getChartBedasarkanJurusan'])->name('home.chart-jurusan');
+    Route::get('/home/trend-chart-kuota', [HomeController::class, 'getChartKuota'])->name('home.chart-kuota');
 
     Route::get('/formulir-pendaftaran',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'index'])->name('formulir-pendaftaran.index');
     Route::get('/formulir-pendaftaran/generate',[\App\Http\Controllers\PPDB\FormulirPendaftaranController::class,'generate'])->name('formulir-pendaftaran.generate');

@@ -62,11 +62,71 @@
             <div class="col-md-6">
                 <div class="cr-card">
                     <div class="cr-card-content label-card">
-                        <div id="chart-sekolah" style="width:100%; height:400px; margin-top:2px;"></div>
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-control" id="filter-sekolah-kuota">
+                                        <option value="all" selected>Semua Sekolah</option>
+                                        @foreach($sekolah as $list)
+                                        <option value="{{ $list->id }}">{{ $list->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="filter-jurusan-kuota">
+                                        <option value="all" selected>Semua Jurusan </option>
+                                        {{-- @foreach($jurusan as $list)
+                                        <option value="{{ $list->id }}">{{ $list->nama_jurusan }}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chart-kuota" style="width:100%; height:400px; margin-top:2px;"></div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="cr-card">
+                    <div class="cr-card-content label-card">
+                        <div id="chart-sekolah" style="width:100%; height:400px; margin-top:2px;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="cr-card">
+                    <div class="cr-card-content label-card">
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select class="form-control" id="filter-sekolah-spline">
+                                        <option value="all" selected>Semua Sekolah</option>
+                                        @foreach($sekolah as $list)
+                                        <option value="{{ $list->id }}">{{ $list->nama_sekolah }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="filter-jurusan-spline">
+                                        <option value="all" selected>Semua Jurusan </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="trend-chart" style="width:100%; height:400px;margin-top:30px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
                 <div class="cr-card">
                     <div class="cr-card-content label-card">
                         <div class="card-title">
@@ -82,42 +142,6 @@
                             </div>
                         </div>
                         <div id="chart-jurusan" style="width:100%; margin-top:2px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xl-12">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="cr-card">
-                    <div class="cr-card-content label-card">
-
-                        <div class="card-title">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <select class="form-control" id="filter-sekolah-spline">
-                                        <option value="all" selected>Semua Sekolah</option>
-                                        @foreach($sekolah as $list)
-                                        <option value="{{ $list->id }}">{{ $list->nama_sekolah }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <select class="form-control" id="filter-jurusan-spline">
-                                        <option value="all" selected>Semua Jurusan </option>
-                                        @foreach($jurusan as $list)
-                                        <option value="{{ $list->id }}">{{ $list->nama_jurusan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div id="trend-chart" style="width:100%; height:400px;margin-top:30px;"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -156,12 +180,61 @@
                                 depth: 35,
                                 dataLabels: {
                                     enabled: true,
-                                    format: '{point.name}'
+                                    format: '{point.name}: {point.percentage:.1f} %'
                                 }
                             }
                         },
                     series: [{
                         name: 'Pendaftar',
+                        colorByPoint: true,
+                        data: response.labels.map(function(label, index) {
+                            return {
+                                name: label,
+                                y: response.series[index]
+                            };
+                        })
+                    }]
+                });
+            },
+            error: function(error) {
+                console.error('Error fetching chart data:', error);
+            }
+        });
+    }
+
+    function fetchChartDataKuota() {
+        var jurusan = $('#filter-jurusan-kuota').val();
+        var sekolah = $('#filter-sekolah-kuota').val();
+        $.ajax({
+            url: "{{ route('home.chart-kuota') }}",
+            method: 'GET',
+            data: { sekolah: sekolah, jurusan: jurusan},
+            success: function(response) {
+                Highcharts.chart('chart-kuota', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45,
+                            beta: 0
+                        }
+                    },
+                    title: {
+                        text: 'Kuota Pendaftaran'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            depth: 35,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Siswa',
                         colorByPoint: true,
                         data: response.labels.map(function(label, index) {
                             return {
@@ -218,6 +291,7 @@
         var filter = $('#filter').val();
         fetchChartData(filter);
         fetchTrendData();
+        fetchChartDataKuota();
 
         $('#filter').on('change', function() {
             var selectedFilter = $(this).val();
@@ -230,6 +304,14 @@
 
         $('#filter-jurusan-spline').on('change', function() {
             fetchTrendData();
+        });
+
+        $('#filter-sekolah-kuota').on('change', function() {
+            fetchChartDataKuota();
+        });
+
+        $('#filter-jurusan-kuota').on('change', function() {
+            fetchChartDataKuota();
         });
 
         $.ajax({
@@ -255,7 +337,7 @@
                             depth: 35,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.name}'
+                                format: '{point.name}: {point.percentage:.1f} %'
                             }
                         }
                     },
@@ -275,6 +357,52 @@
                 console.error('Error fetching chart data:', error);
             }
         });
+    });
+
+    $('#filter-sekolah-spline').change(function(){
+        var sekolahId = $(this).val();
+        if(sekolahId){
+            $.ajax({
+                url: "{{route('jurusan.getListJurusan')}}",
+                type: 'GET',
+                dataType: 'json',
+                data: {sekolah_id:sekolahId},
+                success: function(response){
+                    $('#filter-jurusan-spline').empty();
+                    $('#filter-jurusan-spline').append('<option selected value="all">Semua Jurusan</option>');
+                    $.each(response.data, function(key, value){
+                        $('#filter-jurusan-spline').append('<option value="'+ value.id +'">'+ value.nama_jurusan +'</option>');
+                    });
+                    $('#deskripsi').val('');
+                }
+            });
+        } else {
+            $('#filter-jurusan-spline').empty();
+            $('#filter-jurusan-spline').append('<option value="">Pilih Jurusan</option>');
+        }
+    });
+
+    $('#filter-sekolah-kuota').change(function(){
+        var sekolahId = $(this).val();
+        if(sekolahId){
+            $.ajax({
+                url: "{{route('jurusan.getListJurusan')}}",
+                type: 'GET',
+                dataType: 'json',
+                data: {sekolah_id:sekolahId},
+                success: function(response){
+                    $('#filter-jurusan-kuota').empty();
+                    $('#filter-jurusan-kuota').append('<option selected value="all">Semua Jurusan</option>');
+                    $.each(response.data, function(key, value){
+                        $('#filter-jurusan-kuota').append('<option value="'+ value.id +'">'+ value.nama_jurusan +'</option>');
+                    });
+                    $('#deskripsi').val('');
+                }
+            });
+        } else {
+            $('#filter-jurusan-kuota').empty();
+            $('#filter-jurusan-kuota').append('<option value="">Pilih Jurusan</option>');
+        }
     });
 </script>
 @endsection
