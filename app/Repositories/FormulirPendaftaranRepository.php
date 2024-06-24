@@ -188,7 +188,7 @@ class FormulirPendaftaranRepository extends BaseRepository
             $newUser = new User();
             $newUser->id = $request->create_nisn;
             $newUser->name = $request->create_nama_siswa;
-            $newUser->email = substr(str_replace(' ', '',$request->create_nama_siswa),0,8).'@yktb.sch.id';
+            $newUser->email = $request->create_nisn.'@yktb.sch.id';
             $newUser->password = $password;
             $newUser->role = 'siswa';
             $newUser->save();
