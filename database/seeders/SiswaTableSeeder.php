@@ -32,8 +32,8 @@ class SiswaTableSeeder extends Seeder
             $no_hp_siswa = '08' . rand(1000000000, 9999999999);
             $jurusans = rand(1, 3);
             $sekolah = rand(1, 3);
-            $start = Carbon::createFromDate(2024, 3, 1);
-            $end = Carbon::createFromDate(2024, 8, 30);
+            $start = Carbon::createFromDate(2025, 3, 1);
+            $end = Carbon::createFromDate(2025, 8, 30);
 
             $randomDate = Carbon::createFromTimestamp(rand($start->timestamp, $end->timestamp))->format('Y-m-d');
 
@@ -93,7 +93,7 @@ class SiswaTableSeeder extends Seeder
                     'asal_sekolah' => Str::random(10),
                     'nomor_ijazah' => Str::random(10),
                     'ijazah' => Str::random(10),
-                    'tahun_lulus' => rand(2010, 2023),
+                    'tahun_lulus' => rand(2010, 2024),
                     'nomor_skhun' => Str::random(10),
                     'skhun' => Str::random(10),
                     'alamat_sekolah' => Str::random(20),
@@ -102,7 +102,7 @@ class SiswaTableSeeder extends Seeder
                     'peringkat_kejuaraan' => rand(1, 3),
                     'penyelengara_beasiswa' => Str::random(10),
                     'tingkat_kejuaraan' => Str::random(10),
-                    'tahun_beasiswa' => rand(2010, 2023),
+                    'tahun_beasiswa' => rand(2010, 2024),
                     'pas_foto' => 'foto.jpg',
                     'kartu_keluarga' => 'kk.jpg',
                     'created_by' => 'Seeder',
@@ -150,7 +150,7 @@ class SiswaTableSeeder extends Seeder
                         'asal_sekolah' => Str::random(10),
                         'nomor_ijazah' => Str::random(10),
                         'ijazah' => Str::random(10),
-                        'tahun_lulus' => rand(2010, 2023),
+                        'tahun_lulus' => rand(2010, 2024),
                         'nomor_skhun' => Str::random(10),
                         'skhun' => Str::random(10),
                         'alamat_sekolah' => Str::random(20),
@@ -159,7 +159,7 @@ class SiswaTableSeeder extends Seeder
                         'peringkat_kejuaraan' => rand(1, 3),
                         'penyelengara_beasiswa' => Str::random(10),
                         'tingkat_kejuaraan' => Str::random(10),
-                        'tahun_beasiswa' => rand(2010, 2023),
+                        'tahun_beasiswa' => rand(2010, 2024),
                         'pas_foto' => 'foto.jpg',
                         'kartu_keluarga' => 'kk.jpg',
                         'created_by' => 'Seeder',
